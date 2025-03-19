@@ -1,0 +1,35 @@
+LOCUS       H220929-053_E21_21BDRAA001_C11_premix.ab1 1177 bp    DNA              UNK 01-JAN-1980
+DEFINITION  H220929-053_E21_21BDRAA001_C11_premix.ab1	1177.
+ACCESSION   H220929-053_E21_21BDRAA001_C11_premix.ab1
+VERSION     H220929-053_E21_21BDRAA001_C11_premix.ab1
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    22..783
+                     /label="AE015451"
+     misc_feature    69..691
+                     /label="AE015451"
+ORIGIN
+        1 tccgaaaggg ttgacgtggt gcgcgtggct cccagggcgg gctgccgtct atatgggaca
+       61 gctgtcgcgc cggtgacaca atcctgggca tgagcctggg gatggtggcc acctgaccca
+      121 cggtgcttcg gtaatctcct cggggaacct gtacaacgcc atccagtacg gcatcgacgg
+      181 caatggcctg atcgactacg acgaagtcta gcgcctggct gtcgagcaca agcccaagat
+      241 gatcgttgcc ggcttctcgg cctactcgca ggttctggac ttcgcccgct tccgcgccat
+      301 cgccgacaag gtcggtgcct acctgttcgt cgacatggcc cacgttgccg gcctggttgc
+      361 cgctggcgtg tacccgaacc ctgttccgtt cgccgacgtg gtcaccacca ccacccacaa
+      421 gaccctgcgc ggcccgcgcg gcggcctgat cctggcccgt gccaacgccg acgtcgagaa
+      481 gaagctgaac tccgccgtct tcccgggcgc ccagggcggc ccgctggagc acgtcatcgc
+      541 ggccaaggcc atctgcttcg aggaagccct gcagccagag ttcaaggctt accagcagca
+      601 ggtcgtgaag aacgcccagg ccatggccag cgtgttcatc gagcgcggtt tcgacgtggt
+      661 ttccggtggc aaaaagaacc acctgttcct gctgtcgctg atcaagcagg agatctccag
+      721 tgaggatgca aacgccgccc tgggcaaagc cttcaacacc gtcaacaaga actcggtacc
+      781 gaagaactcg ggggccgaaa aaaaaaaaaa aaaaactctc actacaacaa aaaaggcggg
+      841 gggctaagga ggggggaaaa agggggcggg ggggggggag acgggcggga tgaggcgggg
+      901 gggtgggggg gggggggaaa aaaggggggg gggggggacg cgggtagcga cgaaagaggg
+      961 aggggggggg ggggggggcg gagggggtgg ggggtaagaa agaggaaagg cggtgggaaa
+     1021 aagaaaacgg gtgcgggggc ttattatggg aaaagggggc gagaggtgga accccaatcc
+     1081 cttgccaggg ttcctcggtg ggcggaatca aattcccggg ggaaaggggc cagggaaaaa
+     1141 aatgggcctt tcaagaaaca aatttggggg ggggaga
+//

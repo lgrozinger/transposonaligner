@@ -1,0 +1,35 @@
+LOCUS       H220929-053_M17_21BDRAA001_G09_premix.ab1 1193 bp    DNA              UNK 01-JAN-1980
+DEFINITION  H220929-053_M17_21BDRAA001_G09_premix.ab1	1193.
+ACCESSION   H220929-053_M17_21BDRAA001_G09_premix.ab1
+VERSION     H220929-053_M17_21BDRAA001_G09_premix.ab1
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    15..116
+                     /label="pBAMD1-2-MarC9"
+     misc_feature    117..693
+                     /label="AE015451"
+ORIGIN
+        1 tcaaagatct tttcttgcgg acctagaggt cccctttttt attttaaaaa ttttttcaca
+       61 aaacggttta caagcataaa atctctgata gaccggggac ttatcatcca acctgttatg
+      121 tgcctgatcg tatttgcctg gcggccgggg cacgccctgc ctctaatcgt gccagacaac
+      181 cgcgactaat tctatgcccg ccccactcag cccctggcgg cctgggagga tgcacctggg
+      241 gtgcatgccg ggcgcgacct ggaggcaggc ggtacctggc tgggcgtagg cccacagggg
+      301 cgctttgacg cgctgaacaa catccgcgac ccgggccagg cgcaggggcc tcgctcgcgg
+      361 ggtgagctgg tggcagcgtt tctgcagggc gagctaggag tcggggctta cctggaccag
+      421 gtggccagcc gtagcgggca gtactcgggg ttcaatttgc tggtgggtga tgggcagcga
+      481 ctgggatatc tgcatgcccg tgaggccaca ccgagcctga tgaggggctg gggtttaagg
+      541 gctttcaaac gccgagcggg aaacaccggg ggcgaaactg gggaaggaac ctgacggctc
+      601 tggaaaacct ggtgaacaag ccggagccga acaggctgct gatttactcg cggataacga
+      661 gcccgcggct gatggggacc tacccgagac agggatcaga ctcacatctc attcacggat
+      721 gccagatagt tggggttggc ctcgcgcgca gatcaggaga agacgctgtg gatgagcatc
+      781 actgagaagg agagaagaca gctaggagtc agacgagcag aggtggaccg cgacacacga
+      841 tacaaatctg agagagagag acatagtcga gcagaagcgg agataagtga gagagagacc
+      901 agatcatagt gggtggcttg gggcggcggc tgtgggcggc ataacaaaaa ctgaaaaaaa
+      961 aatggggggt tgaagaggcg ggaagagaaa gaatagttgg gaagatggca aaatacgctg
+     1021 ggaaacaaca aaaagggggg tagcgagggt cccgacgagc agacaaaaaa aaaaaaaaag
+     1081 tggacaatcc gccccagcca ggagtgcgac cgaggaaaca aaaaaaaatg agctgaaggg
+     1141 gggacacgaa gaaaaaaaaa tgctcggtgg aaagggtgcg ggggaaaaaa acc
+//

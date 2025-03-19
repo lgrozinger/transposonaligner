@@ -1,0 +1,25 @@
+LOCUS       H220929-053_C01_21BDRAA001_B01_premix.ab1 544 bp    DNA              UNK 01-JAN-1980
+DEFINITION  H220929-053_C01_21BDRAA001_B01_premix.ab1	544.
+ACCESSION   H220929-053_C01_21BDRAA001_B01_premix.ab1
+VERSION     H220929-053_C01_21BDRAA001_B01_premix.ab1
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    4..127
+                     /label="pBAMD1-2-MarC9"
+     misc_feature    128..273
+                     /label="AE015451"
+ORIGIN
+        1 gctacccttg gttcatttaa tttgcggaac ctagaaggtc ccttttttat ttttaaaaat
+       61 tttttttcac aaaacggttt acaagcataa aatctctgat aaaccgggga cttatcatcc
+      121 aacctgttag tccagctcgc cactgatggc acgcttgatc aggtcgaggg caccggccag
+      181 cagcagctca ggggcgacca cggcgtcccc cgccccgtac tagtcgacgc gtgccacacg
+      241 gttttccttg ccggcggcga tccgctcgat ggcttccccg tctatgtaat attcgacgcg
+      301 tgccaacgtt ttgtgaaaaa atttttaaaa taagaagggg acctctgggt ccgcaattaa
+      361 gtagacaggg tcttagaaaa attcatcctg cacaataaag gggacctcgg tggtccgcgg
+      421 taatgctcaa gggtcttaga taattcatcc aacatcaata ttactaggtt tgggacgggg
+      481 gtgacggggc atattgggac atcgaacgct aaaaaaaagc ggggggaaaa aaatgacgta
+      541 tgaa
+//

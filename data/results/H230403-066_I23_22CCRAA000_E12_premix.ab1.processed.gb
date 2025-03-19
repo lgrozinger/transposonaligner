@@ -1,0 +1,23 @@
+LOCUS       H230403-066_I23_22CCRAA000_E12_premix.ab1 545 bp    DNA              UNK 01-JAN-1980
+DEFINITION  H230403-066_I23_22CCRAA000_E12_premix.ab1	545.
+ACCESSION   H230403-066_I23_22CCRAA000_E12_premix.ab1
+VERSION     H230403-066_I23_22CCRAA000_E12_premix.ab1
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    10..113
+                     /label="pBAMD1-2-MarC9"
+ORIGIN
+        1 acagttacta ttgcggaccc tagaggtccc cttttttatt ttaaaaattt tttcacaaaa
+       61 cggtttacaa gcataaaatc tctgatagac cggggactta tcatccaacc tgttatagtg
+      121 gtgcactccg gcgcgtatgt ccggtaagga cctcagatct ccctctggat ttgttcagaa
+      181 ctctcggttg ccgccgggcg ttttttattg gggaaattcc cgggttcctt aggttcaaac
+      241 tacacagctc gcgtcctgaa cggacccttt cccgttttcc aaagccggat gttccatgtt
+      301 tcctcccaac ttgatcgccc acaaggagga gggaggagtt ttggtttggg gagaatggtg
+      361 ggttaacaac gctcaaaacg cggagggagc atcaacttgc caaaacaatg acggacgcta
+      421 ctctgtccaa cagaaaaaac tcgatgctgg gttcacaaag ggtgagcgcg ggcgataaga
+      481 caacacgaag actctataat gagaactgcg aaaaaaagct gattgcccac cacaccccta
+      541 caaaa
+//

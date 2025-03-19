@@ -1,0 +1,35 @@
+LOCUS       H220929-053_K21_21BDRAA001_F11_premix.ab1 1171 bp    DNA              UNK 01-JAN-1980
+DEFINITION  H220929-053_K21_21BDRAA001_F11_premix.ab1	1171.
+ACCESSION   H220929-053_K21_21BDRAA001_F11_premix.ab1
+VERSION     H220929-053_K21_21BDRAA001_F11_premix.ab1
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    110..780
+                     /label="AE015451"
+     misc_feature    129..681
+                     /label="AE015451"
+ORIGIN
+        1 tcggaggggg atgaagtgag aaggtggtga gagggggggg tgggagataa gggagagatg
+       61 gggaggggaa aagtaagggc aggaggttgg ggatggtggg gaaagacgta cggtgcttgg
+      121 gtaatgaact cggggaacat ggacaacgcc atccagtacg gcatcgacgg ccatggcctg
+      181 atcgactacc acgaagtcta gcgcctggct gtcgagcaca accccaagat gatcgttgcc
+      241 ggcttctcgg cctactcgca ggttctggac ttcgcccgct tccgcgccat cgccgacaag
+      301 gtcggtgcct acctgttcgt cgacatggcc cacgttgccg gcctggttgc cgctggcgtg
+      361 tacccgaacc ctgttccgtt cgccgacgtg gtcaccacca ccacccacaa gaccctgcgc
+      421 ggcccgcgcg gcggcctgat cctggcccgt gccaacgccg acatcgagaa gaagctgaac
+      481 tccgccgtct tcccgggcgc ccagggcggc ccgctggagc acgtcatcgc ggccaaggcc
+      541 atctgcttca aggaagccct gcagccagag ttcaaggctt accagcagca ggtcgtgaag
+      601 aacgcccagg ccatggccag cgtgttcatc gagcgcggtt tcgacgtggt ttccggtggc
+      661 acccagaacc acctgttcct gctgtcgctg atcaagcaag aaatctccgg taaggatgca
+      721 aacaccaccc tgggcaaagc cttcatcacc gtcaacaaga actcggtacc gaacaactcg
+      781 ggcgcgaaaa aaaaaaaaaa aaaaagtggg ggaaagggat ataagctggg ggggaggggc
+      841 gcgtgggggg ggagggggga gaatggtaac taagttgggg ggggggagga aaggaggggg
+      901 ggggggggga aaaaaagggg ggggggtggg ggtgaaaccc aggaggggga tggggagaaa
+      961 cggggggggg gggggaatta atcggtggaa acagagacgc cggccggaaa gaggaaacca
+     1021 attcggcggc aagtgggggg aagggccagg tgaaacccaa tcccaaggcg ggaaattgct
+     1081 cggcgggggg ggaaagggga gcttccgggg ggaaaagggg ccgggaaaaa aaagggcccc
+     1141 ttaaaaaaag agggtttaag gggggggatg a
+//

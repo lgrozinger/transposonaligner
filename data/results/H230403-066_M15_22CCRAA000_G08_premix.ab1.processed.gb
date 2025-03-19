@@ -1,0 +1,37 @@
+LOCUS       H230403-066_M15_22CCRAA000_G08_premix.ab1 1315 bp    DNA              UNK 01-JAN-1980
+DEFINITION  H230403-066_M15_22CCRAA000_G08_premix.ab1	1315.
+ACCESSION   H230403-066_M15_22CCRAA000_G08_premix.ab1
+VERSION     H230403-066_M15_22CCRAA000_G08_premix.ab1
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    7..117
+                     /label="pBAMD1-2-MarC9"
+     misc_feature    118..760
+                     /label="AE015451"
+ORIGIN
+        1 atggcatgtc tattattgcg gacctagagg tccccttttt tattttaaaa attttttcac
+       61 aaaacggttt acaagcataa aatctctgat agaccgggga cttatcatcc aacctgttag
+      121 atcagttctt cgaccttcaa ggtcgagatc gggtccagcg ccgagcacgg ttcgtcaagc
+      181 agcagcacct ccggctccac ggcaatggtg cgggcgatga ccagacgctg ctgctggcca
+      241 ccggacaggc ccagcgccga ctcgtgcagg cggtccttga cctcgtccca caaggccgcg
+      301 cccttcaacg cccactcgac ggcttcatcg agcacgcgct tcttgttgat gccctggatg
+      361 cgcaggccgt agaccacgtt ctcgtagatg gtcttgggga acgggttcgg cttctggaac
+      421 accatgccca cacgccggcg cagttaggca acgtcctcgc ccttgcggta gatattgttg
+      481 ccgtacacgt tgatggcacc ttccacacgg gcaccgtcaa cctattcact acatcctgtt
+      541 gaacgagccc atgcagagtc cacttgcctc aaaccggatg gtcccattaa ggcggtcaag
+      601 cgctgctaca cgatcttcat ctgcacaacg aacaacgcta tgcatgacgt catagaaagg
+      661 gtcaggctca gcacttcgaa gggcacggta tctatgagca tacgcgagct ctgatagtgc
+      721 tgctcaggac aatattccat gcctgggggt gggaaacttg ggggtgggcg agccaacaca
+      781 tagagatatt taaaaggggc ccgggggtta agaagccgac gctttagagg gaaaagactc
+      841 actgtcttga agattaaaga gagaggttgt gaacgtgaag aaagaagaga aaagtggtaa
+      901 taccctgaag catccgaagg gggggataga cacctagggg gtttgttagg agtaaagata
+      961 aaggtaataa tgggtagagg ggtggattaa attattctga gaacattgat acaggtataa
+     1021 tattgggatg agggctgaga tgggcacagg gttataaaaa ataggaatct agagtatata
+     1081 ataagagtag aatagttcgt caaaaaagag ttttaaggag tgggggtcaa tctggcggtt
+     1141 gaggtgttta aaaaaaaaga ttgggtttgt atacaggaaa agaaaacgag gtagaggaga
+     1201 ggagtgtggg ggtgaagacc aacacggggt gttatgttgt ggaacgatat aggtgggggc
+     1261 tattgggaaa agacgcgcag gcgatctcaa caagacaaag agaggtgggg tgtga
+//

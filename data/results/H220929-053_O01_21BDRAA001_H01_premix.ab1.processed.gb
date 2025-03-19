@@ -1,0 +1,35 @@
+LOCUS       H220929-053_O01_21BDRAA001_H01_premix.ab1 1171 bp    DNA              UNK 01-JAN-1980
+DEFINITION  H220929-053_O01_21BDRAA001_H01_premix.ab1	1171.
+ACCESSION   H220929-053_O01_21BDRAA001_H01_premix.ab1
+VERSION     H220929-053_O01_21BDRAA001_H01_premix.ab1
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    14..112
+                     /label="pBAMD1-2-pBAD-YFP_(4A)"
+     misc_feature    112..1132
+                     /label="AE015451"
+ORIGIN
+        1 cgacactgtt caataatttg cggacctaga ggtccccttt ttttatttta aaaatttttt
+       61 tcacaaaacg gtttacaagc ataaaatctc tgaagatgtg tataagagac agggtctgtg
+      121 ccaggaagat ttccgggtgg tcgagggtga cgctgatgcc gcgccttcca aggaacgggt
+      181 tttattcctt gatggggaag tacaacagtg ccttgtcgcc accgatgtcg agggtacgca
+      241 tggtcaccgg cagcgggtgg aaggccgccg tttgctcacg gtttatgggc ccctgctctt
+      301 tctcactggg gaagcgctgg ttgatcatga acggcgcttc tttgcggtac aggcctaccc
+      361 cttcggcgcc ccgctgctag tcatcggcca cttctgccat caggccggtg ttaatcctcg
+      421 gggcgtgcca atggccgtcg ggggtgacgc ctggaagttc gcgcagtgcg tccgtccctt
+      481 gggccatctg gcgttcctcc tcccctactt ttcgcctcgg tgtcattggc ggcgatccct
+      541 ggggtgggcc caagcacgat gggacattga tcaccgtcga cgatcacctc ccggccccct
+      601 ccacgcttgt tagatatagg cacggtcgca ctcatgactc tttaaccatt gggcgatgtc
+      661 catgtgcccc cccgaggctg gcgacatggg agtttgcccc tgagcccagt accgggacca
+      721 gtgcccacca gccttgcctt ccgggcactt caccaagcat ggcctggtgt cccttcctca
+      781 ctgaacacga tggagttgtc accatatacc atcgactgcg aacgatgatt cctgcagata
+      841 agacaaaagg cggcgtccca agtccttgat cgtcggaagc acgctcacgc aggtaagtcg
+      901 tcatcaatca tgctctgagc gggttgaaat gctcagcaac caccatgggg tagggggacc
+      961 ctgaggccca atggtcaggt cttgaatatc tctgtcacgt caacgcctag ggacagagat
+     1021 atcataacat cgtcaaaata aatgtgggaa acacacgcgt ctttccgggc acagcttgcg
+     1081 tggccagttt aggacaaaga ctgcacatgt catcacacac aacatcccag ggagtgtggt
+     1141 atcgagttat agatatgaga gcgggatagc t
+//

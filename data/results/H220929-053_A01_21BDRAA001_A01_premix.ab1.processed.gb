@@ -1,0 +1,24 @@
+LOCUS       H220929-053_A01_21BDRAA001_A01_premix.ab1 516 bp    DNA              UNK 01-JAN-1980
+DEFINITION  H220929-053_A01_21BDRAA001_A01_premix.ab1	516.
+ACCESSION   H220929-053_A01_21BDRAA001_A01_premix.ab1
+VERSION     H220929-053_A01_21BDRAA001_A01_premix.ab1
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    4..106
+                     /label="pBAMD1-2-pBAD-YFP_(4A)"
+     misc_feature    126..281
+                     /label="AE015451"
+ORIGIN
+        1 tgacttgatc aatttatttg cggacctaga ggtccccttt ttttttattt taaaaatttt
+       61 ttcacaaaac ggtttacaag cataaaatct ctgaaaaagt gtataactta acatccaccc
+      121 tgttttgtcc agctggtgcg ctttacgccg ctgctggtgc aaatcttcat cttctacttc
+      181 ttcatcggca ccgtgctcaa cctgtcccgc gagtttgccg gggtagcggc gctggcattg
+      241 ttcaccggtg cttacgtggc cgagatcgtc cgtgcaggcg tccccccccc cgtactagtc
+      301 gacgcgtgcc caaagctgtg gatggggtgg ccatcggcat cgtggaacat cagttggccc
+      361 ttcccaagcc gcagaacgtg gttccccact ctgagcgagg gggagccgcc gtgttgctca
+      421 agaatttcca acatggtacc gaagtcggga caaaaatatt acccgatcta atgaaactgg
+      481 agtggtgaac gcagtggcgc ccaattgtgc aggtgt
+//

@@ -1,0 +1,420 @@
+LOCUS       pBAMD1-2-MarC9          4292 bp    ds-DNA  circular UNK 05-AUG-2022
+DEFINITION  .
+ACCESSION   pBAMD1-2-MarC9
+VERSION     pBAMD1-2-MarC9
+KEYWORDS    .
+SOURCE      
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    10..37
+                     /label="IR"
+                     /ApEinfo_revcolor="#c7b0e3"
+                     /ApEinfo_fwdcolor="#c7b0e3"
+     primer          38..52
+                     /label="F1_IR_PacI"
+                     /ApEinfo_revcolor="#f58a5e"
+                     /ApEinfo_fwdcolor="#f58a5e"
+     CDS             275..1090
+                     /label="aphA"
+                     /ApEinfo_revcolor="#b1ff67"
+                     /ApEinfo_fwdcolor="#b1ff67"
+     exon            275..1090
+                     /label="Translation 275-1090"
+     primer          complement(1151..1182)
+                     /label="R1-IR-SpeI"
+                     /ApEinfo_revcolor="#f58a5e"
+                     /ApEinfo_fwdcolor="#f58a5e"
+     misc_feature    complement(1183..1210)
+                     /label="IR"
+                     /ApEinfo_revcolor="#c7b0e3"
+                     /ApEinfo_fwdcolor="#c7b0e3"
+     primer          1211..1228
+                     /label="F1-IR-SpeI"
+                     /ApEinfo_revcolor="#f58a5e"
+                     /ApEinfo_fwdcolor="#f58a5e"
+     primer          1275..1291
+                     /label="PS3"
+                     /note="sequence: GAACGCTCGGTTGCCGC"
+                     /ApEinfo_revcolor="#f7977a"
+                     /ApEinfo_fwdcolor="#f7977a"
+     primer          complement(1275..1291)
+                     /label="PS2"
+                     /note="sequence: GCGGCAACCGAGCGTTC"
+                     /ApEinfo_revcolor="#f7977a"
+                     /ApEinfo_fwdcolor="#f7977a"
+     CDS             1421..2467
+                     /label="Translation 1421-2467"
+                     /ApEinfo_revcolor="#b4abac"
+                     /ApEinfo_fwdcolor="#b4abac"
+     exon            1421..2467
+                     /label="Translation 1421-2467"
+     misc_feature    complement(1421..2467)
+                     /label="Mariner"
+                     /ApEinfo_revcolor="#faac61"
+                     /ApEinfo_fwdcolor="#faac61"
+     primer          complement(2608..2626)
+                     /label="PSBLA"
+                     /ApEinfo_revcolor="#ff9ccd"
+                     /ApEinfo_fwdcolor="#ff9ccd"
+     primer          complement(2608..2626)
+                     /label="PSBLA"
+                     /note="sequence: atgctgaatgctcatactc"
+                     /ApEinfo_revcolor="#f7977a"
+                     /ApEinfo_fwdcolor="#f7977a"
+     gene            2612..3472
+                     /label="bla"
+                     /ApEinfo_revcolor="#c6c9d1"
+                     /ApEinfo_fwdcolor="#c6c9d1"
+     misc_feature    complement(3528..3773)
+                     /label="oriT"
+                     /ApEinfo_revcolor="#c7b0e3"
+                     /ApEinfo_fwdcolor="#c7b0e3"
+     primer          3544..3561
+                     /label="PS5"
+                     /note="sequence: CCCTGCTTCGGGGTCATT"
+                     /ApEinfo_revcolor="#f7977a"
+                     /ApEinfo_fwdcolor="#f7977a"
+     primer          complement(3751..3768)
+                     /label="PS4"
+                     /ApEinfo_revcolor="#75c6a9"
+                     /ApEinfo_fwdcolor="#75c6a9"
+     primer          complement(3751..3768)
+                     /label="PS4"
+                     /note="sequence: CCAGCCTCGCAGAGCAGG"
+                     /ApEinfo_revcolor="#f7977a"
+                     /ApEinfo_fwdcolor="#f7977a"
+     misc_feature    complement(3782..4173)
+                     /label="oriR6K"
+                     /ApEinfo_revcolor="#faac61"
+                     /ApEinfo_fwdcolor="#faac61"
+     regulatory      complement(4188..4292)
+                     /label="terminator"
+                     /ApEinfo_revcolor="#b7e6d7"
+                     /ApEinfo_fwdcolor="#b7e6d7"
+     primer          4191..4208
+                     /label="PS1"
+                     /note="sequence: AGGGCGGCGGATTTGTCC"
+                     /ApEinfo_revcolor="#f7977a"
+                     /ApEinfo_fwdcolor="#f7977a"
+     primer          complement(4191..4208)
+                     /label="PS6"
+                     /note="sequence: GGACAAATCCGCCGCCCT"
+                     /ApEinfo_revcolor="#f7977a"
+                     /ApEinfo_fwdcolor="#f7977a"
+     hsp             1109..1210
+                     /label="H230403-066_M23_22CCRAA000_G12_premix.ab1"
+     hsp             1097..1210
+                     /label="H230403-066_A09_22CCRAA000_A05_premix.ab1"
+     hsp             1097..1210
+                     /label="H230403-066_M13_22CCRAA000_G07_premix.ab1"
+     hsp             1097..1210
+                     /label="H230403-066_G07_22CCRAA000_D04_premix.ab1"
+     hsp             1107..1210
+                     /label="H230403-066_M11_22CCRAA000_G06_premix.ab1"
+     hsp             1097..1210
+                     /label="H230403-066_G09_22CCRAA000_D05_premix.ab1"
+     hsp             1095..1210
+                     /label="H230403-066_I15_22CCRAA000_E08_premix.ab1"
+     hsp             1094..1210
+                     /label="H220929-053_G03_21BDRAA001_D02_premix.ab1"
+     hsp             1097..1210
+                     /label="H230403-066_I07_22CCRAA000_E04_premix.ab1"
+     hsp             1093..1210
+                     /label="H230403-066_I05_22CCRAA000_E03_premix.ab1"
+     hsp             1097..1210
+                     /label="H230403-066_A13_22CCRAA000_A07_premix.ab1"
+     hsp             1108..1184
+                     /label="H220929-053_M03_21BDRAA001_G02_premix.ab1"
+     hsp             1109..1210
+                     /label="H230403-066_G23_22CCRAA000_D12_premix.ab1"
+     hsp             1107..1210
+                     /label="H230403-066_I03_22CCRAA000_E02_premix.ab1"
+     hsp             1107..1210
+                     /label="H230403-066_C03_22CCRAA000_B02_premix.ab1"
+     hsp             1103..1210
+                     /label="H220929-053_I17_21BDRAA001_E09_premix.ab1"
+     hsp             1094..1210
+                     /label="H220929-053_C05_21BDRAA001_B03_premix.ab1"
+     hsp             1110..1210
+                     /label="H220929-053_E01_21BDRAA001_C01_premix.ab1"
+     hsp             1097..1210
+                     /label="H230403-066_I17_22CCRAA000_E09_premix.ab1"
+     hsp             1097..1210
+                     /label="H230403-066_E07_22CCRAA000_C04_premix.ab1"
+     hsp             1103..1186
+                     /label="H230403-066_O21_22CCRAA000_H11_premix.ab1"
+     hsp             1109..1210
+                     /label="H220929-053_E17_21BDRAA001_C09_premix.ab1"
+     hsp             1107..1210
+                     /label="H230403-066_G01_22CCRAA000_D01_premix.ab1"
+     hsp             1103..1210
+                     /label="H230403-066_C17_22CCRAA000_B09_premix.ab1"
+     hsp             1107..1210
+                     /label="H230403-066_C09_22CCRAA000_B05_premix.ab1"
+     hsp             1095..1182
+                     /label="H220929-053_A01_21BDRAA001_A01_premix.ab1"
+     hsp             1092..1210
+                     /label="H220929-053_C01_21BDRAA001_B01_premix.ab1"
+     hsp             1106..1186
+                     /label="H230403-066_E23_22CCRAA000_C12_premix.ab1"
+     hsp             1107..1210
+                     /label="H230403-066_K11_22CCRAA000_F06_premix.ab1"
+     hsp             1109..1210
+                     /label="H230403-066_O05_22CCRAA000_H03_premix.ab1"
+     hsp             1097..1210
+                     /label="H230403-066_M15_22CCRAA000_G08_premix.ab1"
+     hsp             1103..1210
+                     /label="H230403-066_C07_22CCRAA000_B04_premix.ab1"
+     hsp             1107..1210
+                     /label="H230403-066_O09_22CCRAA000_H05_premix.ab1"
+     hsp             1095..1210
+                     /label="H220929-053_I03_21BDRAA001_E02_premix.ab1"
+     hsp             1099..1210
+                     /label="H220929-053_E19_21BDRAA001_C10_premix.ab1"
+     hsp             1107..1210
+                     /label="H230403-066_I23_22CCRAA000_E12_premix.ab1"
+     hsp             1108..1210
+                     /label="H220929-053_K15_21BDRAA001_F08_premix.ab1"
+     hsp             1111..1210
+                     /label="H220929-053_M15_21BDRAA001_G08_premix.ab1"
+     hsp             1108..1186
+                     /label="H220929-053_A03_21BDRAA001_A02_premix.ab1"
+     hsp             1107..1186
+                     /label="H230403-066_C21_22CCRAA000_B11_premix.ab1"
+     hsp             1107..1210
+                     /label="H230403-066_A11_22CCRAA000_A06_premix.ab1"
+     hsp             1107..1210
+                     /label="H230403-066_I13_22CCRAA000_E07_premix.ab1"
+     hsp             1092..1210
+                     /label="H220929-053_E03_21BDRAA001_C02_premix.ab1"
+     hsp             1097..1210
+                     /label="H230403-066_G11_22CCRAA000_D06_premix.ab1"
+     hsp             1097..1210
+                     /label="H230403-066_G17_22CCRAA000_D09_premix.ab1"
+     hsp             1096..1210
+                     /label="H230403-066_M01_22CCRAA000_G01_premix.ab1"
+     hsp             1105..1210
+                     /label="H230403-066_K01_22CCRAA000_F01_premix.ab1"
+     hsp             1105..1210
+                     /label="H220929-053_G15_21BDRAA001_D08_premix.ab1"
+     hsp             1107..1210
+                     /label="H230403-066_K05_22CCRAA000_F03_premix.ab1"
+     hsp             1109..1210
+                     /label="H230403-066_O11_22CCRAA000_H06_premix.ab1"
+     hsp             1106..1210
+                     /label="H220929-053_A15_21BDRAA001_A08_premix.ab1"
+     hsp             1097..1186
+                     /label="H220929-053_A05_21BDRAA001_A03_premix.ab1"
+     hsp             1105..1210
+                     /label="H230403-066_C05_22CCRAA000_B03_premix.ab1"
+     hsp             1109..1210
+                     /label="H230403-066_K23_22CCRAA000_F12_premix.ab1"
+     hsp             1107..1186
+                     /label="H230403-066_C19_22CCRAA000_B10_premix.ab1"
+     hsp             1102..1186
+                     /label="H230403-066_E19_22CCRAA000_C10_premix.ab1"
+     hsp             1106..1210
+                     /label="H230403-066_K13_22CCRAA000_F07_premix.ab1"
+     hsp             1105..1186
+                     /label="H220929-053_O01_21BDRAA001_H01_premix.ab1"
+     hsp             1097..1210
+                     /label="H230403-066_E09_22CCRAA000_C05_premix.ab1"
+     hsp             1103..1210
+                     /label="H230403-066_E13_22CCRAA000_C07_premix.ab1"
+     hsp             1107..1210
+                     /label="H230403-066_I01_22CCRAA000_E01_premix.ab1"
+     hsp             1099..1210
+                     /label="H220929-053_C15_21BDRAA001_B08_premix.ab1"
+     hsp             1108..1210
+                     /label="H220929-053_C03_21BDRAA001_B02_premix.ab1"
+     hsp             1097..1210
+                     /label="H230403-066_E15_22CCRAA000_C08_premix.ab1"
+     hsp             1107..1210
+                     /label="H220929-053_E15_21BDRAA001_C08_premix.ab1"
+     hsp             1097..1207
+                     /label="H230403-066_O03_22CCRAA000_H02_premix.ab1"
+     hsp             1103..1210
+                     /label="H220929-053_O13_21BDRAA001_H07_premix.ab1"
+     hsp             1096..1210
+                     /label="H230403-066_G15_22CCRAA000_D08_premix.ab1"
+     hsp             1103..1210
+                     /label="H220929-053_G17_21BDRAA001_D09_premix.ab1"
+     hsp             1107..1210
+                     /label="H230403-066_E17_22CCRAA000_C09_premix.ab1"
+     hsp             1107..1210
+                     /label="H230403-066_I09_22CCRAA000_E05_premix.ab1"
+     hsp             1099..1186
+                     /label="H230403-066_C23_22CCRAA000_B12_premix.ab1"
+     hsp             1107..1186
+                     /label="H230403-066_O17_22CCRAA000_H09_premix.ab1"
+     hsp             1099..1186
+                     /label="H220929-053_K01_21BDRAA001_F01_premix.ab1"
+     hsp             1105..1210
+                     /label="H230403-066_O01_22CCRAA000_H01_premix.ab1"
+     hsp             1097..1210
+                     /label="H230403-066_G05_22CCRAA000_D03_premix.ab1"
+     hsp             1105..1210
+                     /label="H230403-066_K03_22CCRAA000_F02_premix.ab1"
+     hsp             1103..1210
+                     /label="H230403-066_O23_22CCRAA000_H12_premix.ab1"
+     hsp             1099..1210
+                     /label="H230403-066_A05_22CCRAA000_A03_premix.ab1"
+     hsp             1105..1210
+                     /label="H230403-066_C01_22CCRAA000_B01_premix.ab1"
+     hsp             1108..1210
+                     /label="H220929-053_G05_21BDRAA001_D03_premix.ab1"
+     hsp             1099..1210
+                     /label="H220929-053_A19_21BDRAA001_A10_premix.ab1"
+     hsp             1103..1210
+                     /label="H230403-066_A01_22CCRAA000_A01_premix.ab1"
+     hsp             1106..1186
+                     /label="H230403-066_K21_22CCRAA000_F11_premix.ab1"
+     hsp             1105..1210
+                     /label="H230403-066_E05_22CCRAA000_C03_premix.ab1"
+     hsp             1111..1186
+                     /label="H220929-053_G01_21BDRAA001_D01_premix.ab1"
+     hsp             1103..1210
+                     /label="H230403-066_C11_22CCRAA000_B06_premix.ab1"
+     hsp             1108..1210
+                     /label="H220929-053_A17_21BDRAA001_A09_premix.ab1"
+     hsp             1109..1210
+                     /label="H220929-053_I15_21BDRAA001_E08_premix.ab1"
+     hsp             1105..1210
+                     /label="H220929-053_K17_21BDRAA001_F09_premix.ab1"
+     hsp             1091..1210
+                     /label="H220929-053_E05_21BDRAA001_C03_premix.ab1"
+     hsp             1095..1210
+                     /label="H230403-066_M09_22CCRAA000_G05_premix.ab1"
+     hsp             1099..1210
+                     /label="H230403-066_A15_22CCRAA000_A08_premix.ab1"
+     hsp             1109..1210
+                     /label="H220929-053_C19_21BDRAA001_B10_premix.ab1"
+     hsp             1103..1186
+                     /label="H230403-066_A19_22CCRAA000_A10_premix.ab1"
+     hsp             1108..1210
+                     /label="H220929-053_O15_21BDRAA001_H08_premix.ab1"
+     hsp             1111..1186
+                     /label="H230403-066_E21_22CCRAA000_C11_premix.ab1"
+     hsp             1105..1210
+                     /label="H230403-066_C13_22CCRAA000_B07_premix.ab1"
+     hsp             1091..1186
+                     /label="H220929-053_I01_21BDRAA001_E01_premix.ab1"
+     hsp             1109..1210
+                     /label="H230403-066_O07_22CCRAA000_H04_premix.ab1"
+     hsp             1095..1186
+                     /label="H220929-053_M01_21BDRAA001_G01_premix.ab1"
+     hsp             1107..1210
+                     /label="H230403-066_E11_22CCRAA000_C06_premix.ab1"
+     hsp             1102..1210
+                     /label="H230403-066_A17_22CCRAA000_A09_premix.ab1"
+     hsp             1097..1210
+                     /label="H230403-066_K15_22CCRAA000_F08_premix.ab1"
+     hsp             1108..1210
+                     /label="H220929-053_M17_21BDRAA001_G09_premix.ab1"
+     hsp             1092..1210
+                     /label="H230403-066_O15_22CCRAA000_H08_premix.ab1"
+     hsp             1108..1210
+                     /label="H220929-053_C17_21BDRAA001_B09_premix.ab1"
+     hsp             1101..1210
+                     /label="H220929-053_O17_21BDRAA001_H09_premix.ab1"
+     hsp             1107..1210
+                     /label="H230403-066_C15_22CCRAA000_B08_premix.ab1"
+     hsp             1107..1210
+                     /label="H230403-066_M05_22CCRAA000_G03_premix.ab1"
+     hsp             1107..1210
+                     /label="H230403-066_K07_22CCRAA000_F04_premix.ab1"
+     hsp             1092..1210
+                     /label="H230403-066_G13_22CCRAA000_D07_premix.ab1"
+     hsp             1108..1210
+                     /label="H220929-053_K03_21BDRAA001_F02_premix.ab1"
+     hsp             1097..1210
+                     /label="H230403-066_A07_22CCRAA000_A04_premix.ab1"
+     hsp             1107..1210
+                     /label="H230403-066_O13_22CCRAA000_H07_premix.ab1"
+     hsp             1097..1210
+                     /label="H230403-066_M03_22CCRAA000_G02_premix.ab1"
+     hsp             1099..1210
+                     /label="H230403-066_K09_22CCRAA000_F05_premix.ab1"
+     hsp             1091..1210
+                     /label="H230403-066_E01_22CCRAA000_C01_premix.ab1"
+     hsp             1097..1186
+                     /label="H220929-053_O03_21BDRAA001_H02_premix.ab1"
+     hsp             1097..1210
+                     /label="H230403-066_M07_22CCRAA000_G04_premix.ab1"
+     hsp             1097..1210
+                     /label="H230403-066_I11_22CCRAA000_E06_premix.ab1"
+ORIGIN
+        1 tttaattaaa caggttggat gataagtccc cggtctattg tgtctcaggc cgcctaggcc
+       61 gcggccgcgc gaattcgagc tcggtacccg gggatcctct agagtcgacc tgcaggcatg
+      121 caagcttgcg gccgccaaag cccgccgaaa ggcgggcttt tctgtattta aatttgtgtc
+      181 tcaaaatctc tgatgttaca ttgcacaaga taaaaatata tcatcatgaa caataaaact
+      241 gtctgcttac ataaacagta atacaagggg tgttatgagc catattcagc gtgaaacgag
+      301 ctgtagccgt ccgcgtctga acagcaacat ggatgcggat ctgtatggct ataaatgggc
+      361 gcgtgataac gtgggtcaga gcggcgcgac catttatcgt ctgtatggca aaccggatgc
+      421 gccggaactg tttctgaaac atggcaaagg cagcgtggcg aacgatgtga ccgatgaaat
+      481 ggtgcgtctg aactggctga ccgaatttat gccgctgccg accattaaac attttattcg
+      541 caccccggat gatgcgtggc tgctgaccac cgcgattccg ggcaaaaccg cgtttcaggt
+      601 gctggaagaa tatccggata gcggcgaaaa cattgtggat gcgctggccg tgtttctgcg
+      661 tcgtctgcat agcattccgg tgtgcaactg cccgtttaac agcgatcgtg tgtttcgtct
+      721 ggcccaggcg cagagccgta tgaacaacgg cctggtggat gcgagcgatt ttgatgatga
+      781 acgtaacggc tggccggtgg aacaggtgtg gaaagaaatg cataaactgc tgccgtttag
+      841 cccggatagc gtggtgaccc acggcgattt tagcctggat aacctgattt tcgatgaagg
+      901 caaactgatt ggctgcattg atgtgggccg tgtgggcatt gcggatcgtt atcaggatct
+      961 ggccattctg tggaactgcc tgggcgaatt tagcccgagc ctgcaaaaac gtctgtttca
+     1021 gaaatatggc attgataatc cggatatgaa caaactgcaa tttcatctga tgctggatga
+     1081 atttttctaa gacccttgtc taattaattg cggaccctag aggtcccctt ttttatttta
+     1141 aaaatttttt cacaaaacgg tttacaagca taaaatctct gatagaccgg ggacttatca
+     1201 tccaacctgt actagtcttg gactcctgtt gatagatcca gtaatgacct cagaactcca
+     1261 tctggatttg ttcagaacgc tcggttgccg ccgggcgttt tttattggtg agaatccagg
+     1321 ggtcccctgg tttaaactac acaagtagcg tcctgaacgg aacctttccc gttttccaga
+     1381 atctgatgtt ccatgtgacc tcctaacatg gtaacgttca atggaaaaaa aggaatttcg
+     1441 tgttttgata aaatactgtt ttctgaaggg aaaaaataca gtggaagcaa aaacttggct
+     1501 tgataatgag tttccggact ctgccccagg gaaatcaaca ataattgatt ggtatgcaaa
+     1561 attcaagcgt ggtgaaatga gcacggagga cggtgaacgc agtggacgcc cgaaagaggt
+     1621 ggttaccgac gaaaacatca aaaaaatcca caaaatgatt ttgaatgacc gtaaaatgaa
+     1681 gttgatcgag atagcagagg ccttaaagat atcaaaggaa cgtgttggtc atatcattca
+     1741 tcaatatttg gatatgcgga agctctgtgc gaaatgggtg ccgcgcgaac tcacatttga
+     1801 ccaaaaacaa cgacgtgttg atgattctaa gcggtgtttg cagctgttaa ctcgtaatac
+     1861 acccgagttt ttccgtcgat atgtgacaat ggatgaaaca tggctccatc actacactcc
+     1921 tgagtccaat cgacagtcgg ctgagtggac agcgaccggt gaaccgtctc cgaagcgtgg
+     1981 aaagactcaa aagtccgctg gcaaagtaat ggcctctgtt ttttgggatg cgcatggaat
+     2041 aatttttatc gattatcttg agaagggaaa aaccatcaac agtgactatt atatggcgtt
+     2101 attggagcgt ttgaaggtcg aaatcgcggc aaaacggccc cacatgaaga agaaaaaagt
+     2161 gttgttccac caagacaacg caccgtgcca caagtcattg agaacgatgg caaaaattca
+     2221 tgaattgggc ttcgaattgc ttccccaccc gccgtattct ccagatctgg cccccagcga
+     2281 ctttttcttg ttctcagacc tcaaaaggat gctcgcaggg aaaaaatttg gctgcaatga
+     2341 agaggtgatc gccgaaactg aggcctattt tgaggcaaaa ccgaaggagt actaccaaaa
+     2401 tggtatcaaa aaattggaag gtcgttataa tcgttgtatc gctcttgaag ggaactatgt
+     2461 tgaataacgg cgatcgctag tagcccgcct aatgagcggg ctttttttta attcccctat
+     2521 ttgtttattt ttctaaatac attcaaatat gtatccgctc atgagacaat aaccctgata
+     2581 aatgcttcaa taatattgaa aaaggaagag tatgagcatt cagcattttc gtgtggcgct
+     2641 gattccgttt tttgcggcgt tttgcctgcc ggtgtttgcg catccggaaa ccctggtgaa
+     2701 agtgaaagat gcggaagatc aactgggtgc gcgcgtgggc tatattgaac tggatctgaa
+     2761 cagcggcaaa attctggaat cttttcgtcc ggaagaacgt tttccgatga tgagcacctt
+     2821 taaagtgctg ctgtgcggtg cggttctgag ccgtgtggat gcgggccagg aacaactggg
+     2881 ccgtcgtatt cattatagcc agaacgatct ggtggaatat agcccggtga ccgaaaaaca
+     2941 tctgaccgat ggcatgaccg tgcgtgaact gtgcagcgcg gcgattacca tgagcgataa
+     3001 caccgcggcg aacctgctgc tgacgaccat tggcggtccg aaagaactga ccgcgtttct
+     3061 gcataacatg ggcgatcatg tgacccgtct ggatcgttgg gaaccggaac tgaacgaagc
+     3121 gattccgaac gatgaacgtg ataccaccat gccggcagca atggcgacca ccctgcgtaa
+     3181 actgctgacg ggtgagctgc tgaccctggc aagccgccag caactgattg attggatgga
+     3241 agcggataaa gtggcgggtc cgctgctgcg tagcgcgctg ccggctggct ggtttattgc
+     3301 ggataaaagc ggtgcgggcg aacgtggcag ccgtggcatt attgcggcgc tgggcccgga
+     3361 tggtaaaccg agccgtattg tggtgattta taccaccggc agccaggcga cgatggatga
+     3421 acgtaaccgt cagattgcgg aaattggcgc gagcctgatt aaacattggt aaaccgatac
+     3481 aattaaaggc tccttttgga gccttttttt ttggacacgc gtttgtcctt ttccgctgca
+     3541 taaccctgct tcggggtcat tatagcgatt ttttcggtat atccatcctt tttcgcacga
+     3601 tatacaggat tttgccaaag ggttcgtgta gactttcctt ggtgtatcca acggcgtcag
+     3661 ccgggcagga taggtgaagt aggcccaccc gcgagcgggt gttccttctt cactgtccct
+     3721 tattcgcacc tggcggtgct caacgggaat cctgctctgc gaggctggcc gtaggccggc
+     3781 cgatctgaag atcagcagtt caacctgttg atagtacgta ctaagctctc atgtttcacg
+     3841 tactaagctc tcatgtttaa cgtactaagc tctcatgttt aacgaactaa accctcatgg
+     3901 ctaacgtact aagctctcat ggctaacgta ctaagctctc atgtttcacg tactaagctc
+     3961 tcatgtttga acaataaaat taatataaat cagcaactta aatagcctct aaggttttaa
+     4021 gttttataag aaaaaaaaga atatataagg cttttaaagc ctttaaggtt taacggttgt
+     4081 ggacaacaag ccagggatgt aacgcactga gaagccctta gagcctctca aagcaatttt
+     4141 gagtgacaca ggaacactta acggctgaca tggggcgcgc ccagctgtct agggcggcgg
+     4201 atttgtccta ctcaggagag cgttcaccga caaacaacag ataaaacgaa aggcccagtc
+     4261 tttcgactga gcctttcgtt ttatttgatg cc
+//

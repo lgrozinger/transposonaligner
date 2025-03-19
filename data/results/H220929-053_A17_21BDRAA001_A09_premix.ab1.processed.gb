@@ -1,0 +1,34 @@
+LOCUS       H220929-053_A17_21BDRAA001_A09_premix.ab1 1132 bp    DNA              UNK 01-JAN-1980
+DEFINITION  H220929-053_A17_21BDRAA001_A09_premix.ab1	1132.
+ACCESSION   H220929-053_A17_21BDRAA001_A09_premix.ab1
+VERSION     H220929-053_A17_21BDRAA001_A09_premix.ab1
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    14..116
+                     /label="pBAMD1-2-MarC9"
+     misc_feature    112..517
+                     /label="AE015451"
+ORIGIN
+        1 cccaagatca ttcttgcgga ccctagaggt cccctttttt attttaaaaa ttttttcaca
+       61 aaacggttta caagcataaa atctctgata gaccggggac ttatcatcca acctgttaca
+      121 cccaggctga cgcggttgaa gcccagttcg cgaagcaggc ccatggtcga ccagtcggct
+      181 tcgcgaggat cgatctcgat gccgtagtcg ccggaatcgt cgtccagcag gtggaagtgc
+      241 tggcgcaggg tggccatcag ctggcgcagt tccacatggc tgaggaaggt cggtgtaccg
+      301 ccgccaaaat gcaactgttc aacacattgt ttagggtcca ggtggcaggc gaccagctgg
+      361 atttcctgct ccaggcgctg caggtagggc gcagcgcggg cgcggtcttt ggtgatgacc
+      421 ttgttgcagg cgcagtagta gcagatgttg gcgcagaacg gcacatgcac gtacagcgac
+      481 agcaggcgca cggcccgtcg gctctcgcgc agggcgtaaa ccccaacgta ctagtcgacg
+      541 cgtgaaaata gttggggttg gcctcgcgcg cagatcaggg ggagcacgcc gaacttgacg
+      601 gtgtagggga agaaaaaaga aaggacgaac gaaacaagca aggtggtgat aaccggatac
+      661 aagtcagtga agcagaggga tagggcccag aaaaggaaaa agaaagaaag agggacaaaa
+      721 aaagcagaag atcacgaaag acgacaaggt aaaaagtagc acacaaacaa aacaagaatg
+      781 gaaaaggaaa gaaataaaag aggaggaggg aaacaggaca aggagagaca agaggagata
+      841 gaagaggaaa tgggggaaaa ggtggggagt aaccgagtga ggtggggttg ggctcccggc
+      901 gaaggagagg aggcaaagag gggaagaaga agtgcagttg gagtgacgca aagtatgcgt
+      961 gagaacgttg gatatggggt gactagaaga gggggggcga gctagctaat caaggtgaga
+     1021 aaaagaagag ggtctataaa atgaaaggtt gggtgcggag agagagaaag agggagtcgt
+     1081 ggggagtggg ctgaagaagt aaaggacggg gagccaagac aggacggaac ga
+//

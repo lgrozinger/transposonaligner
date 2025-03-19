@@ -1,0 +1,38 @@
+LOCUS       H220929-053_C21_21BDRAA001_B11_premix.ab1 1367 bp    DNA              UNK 01-JAN-1980
+DEFINITION  H220929-053_C21_21BDRAA001_B11_premix.ab1	1367.
+ACCESSION   H220929-053_C21_21BDRAA001_B11_premix.ab1
+VERSION     H220929-053_C21_21BDRAA001_B11_premix.ab1
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    68..780
+                     /label="AE015451"
+     misc_feature    68..686
+                     /label="AE015451"
+ORIGIN
+        1 cccgaaagtc ttagagtgat gagctggtgc caggccgggc tggcgtctat atgggacagt
+       61 tgtgcttggt gaacaatcct gggcatgagc ctggggacgg tggccacctg acccacggtg
+      121 cttcggtaat ctcctcgggg aacctgtaca acgccatcca gtacggcatc gacggcaatg
+      181 gcctgatcga ctacgacgaa gtctagcgcc tggctgtcga gcacaagccc aagatgatcg
+      241 ttgccggctt ctcggcctac tcgcaggttc tggacttcgc ccgcttccgc gccatcgccg
+      301 acaaggtcgg tgcctacctg ttcgtcgaca tggcccacgt tgccggcctg gttgccgctg
+      361 gcgtgtaccc gaaccctgtt ccgttcgccg acgtggtcac caccaccacc cacaagaccc
+      421 tgcgcggccc gcgcggcggc ctgatcctgg cccgtgccaa cgccgacatc gagaagaagc
+      481 tgaactccgc cgtcttcccg ggcgcccagg gcggcccgct ggaacacgtc atcgcggcca
+      541 aggccatctg cttcaaggaa gccctgcagc cagagttcaa ggcttaccag cagcaggtcg
+      601 tgaagaacgc ccaggccatg gccagcgtgt tcatcgagcg cggtttcgac gtggtttccg
+      661 gtggaaacca gaaccacctg ttcctgctgt cgctgatcaa gcaggaaatc tccagtaagg
+      721 atgaaaacgc cgaccgtggg caaaagccct tcaatcaacc gttcaacaga gaaacttcgg
+      781 gtaacaggaa aaaactcccg gcgggcggga aaaaaaaaaa aaaaaaaaaa agcgggaacg
+      841 aagtagaggc gggggggaaa aggggggggg agagaggggg gaggggggga agaggaagaa
+      901 aagggggggg gggaaagaaa tggggccatg ggggcggggg ggggggcggg gaaaaaaaaa
+      961 aaaggggaga gggggaggag acagcgttgg gggagaaagg acagggggga gggggggagg
+     1021 gggggggggc tggggggggg gagcgaaagg gggggggggg gggttaaagg taaaaaaccg
+     1081 aaaaaaggcg gggtccgggg aaaaaaatgg ggagaagccc agtttccggg ccgggccttt
+     1141 aattaaaggg ggaaaaaaaa agggggcccc agagccgggg tggaaccccc cccaaattcc
+     1201 cctttcggca aaggggaaat tgtggcttct gtttgtggga caggaaaaat aggaaaagat
+     1261 ttttcctggg ggggggggga aaaaatggtt gcccaaaggg ggaaaaaaaa aatgtgaggg
+     1321 gcgctttttc aaaaaaaaaa aaaaaatttt tttggcggcg gggggga
+//
