@@ -18,7 +18,7 @@ def nthreads():
         n = 1
     return max(1, n // 2)
 
-def blastn(query_records, target_records):
+def blastn(query_records, target_records, **kwargs):
     "Does a BLASTN query for query_records against target_records."
     with tempfile.TemporaryDirectory() as directory:
         query_fasta = pathlib.Path(directory).resolve() / "query.fasta"
@@ -33,6 +33,10 @@ def blastn(query_records, target_records):
         cmd += ["-num_threads", str(nthreads())]
         cmd += ["-mt_mode", str(1)]
         cmd += ["-outfmt", "5"]
+        for argument in kwargs:
+            cmd += [f"-{argument}", str(kwargs[argument])]
+
+        print(" ".join(cmd))
 
         result = subprocess.run(cmd, capture_output=True, check=True)
         return Blast.parse(io.BytesIO(result.stdout))
@@ -59,8 +63,8 @@ def get_query(hit, records):
 def get_target(hit, records):
     return next(filter(lambda x: x.name == hit.target.name, records))
 
-def align(query_records, target_records):
-    for alignment in blastn(query_records, target_records):
+def align(query_records, target_records, **kwargs):
+    for alignment in blastn(query_records, target_records, **kwargs):
         for hit in alignment:
             query_record = get_query(hit, query_records)
             target_record = get_target(hit, target_records)
