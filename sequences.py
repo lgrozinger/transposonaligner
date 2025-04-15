@@ -68,10 +68,3 @@ def translate_feature(feature, from_location, to_location):
     feature = copy.deepcopy(feature)
     feature.location = location
     return feature
-
-def suffix(record):
-    last = 0
-    for feature in record.features:
-        if feature.location.end > last:
-            last  = feature.location.end
-    return region_between(record, last, len(record) + 1)

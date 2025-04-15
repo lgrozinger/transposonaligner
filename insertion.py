@@ -1,9 +1,24 @@
 from Bio.SeqRecord import SeqRecord
+from Bio.SeqFeature import SeqFeature
+from Bio.SeqFeature import SimpleLocation
+from Bio.Seq import Seq
 
 import blastn
+import sequences
+
+def query(hit, insertions):
+    return next(filter(lambda x: x.id == hit[0].query.id, insertions))
+
+def target(hit, insertions):
+    return next(filter(lambda x: x.name == hit.target.name, insertions))
 
 def transposon_search(insertions, transposons):
-    blastn.align(insertions, transposons)
+    for alignment in blastn.blastn(insertions, transposons, word_size=8):
+        for hit in alignment:
+            insertion = query(hit, insertions)
+            transposon = target(hit, transposons)
+            insertion.features.append(TransposonFeature(hit, insertion))
+
     for insertion in insertions:
         transposon_features = []
         for transposon in transposons:
@@ -18,23 +33,68 @@ def transposon_search(insertions, transposons):
             insertion.transposon = best.hsp.target
 
     return None
-        
 
+class AlignedFeature(SeqFeature):
+    pass
+
+class TransposonFeature(AlignedFeature):
+    def __init__(self, hsp, parent):
+        target_from = hsp.coordinates[0][0]
+        target_to = hsp.coordinates[0][-1]
+        target_location = SimpleLocation(
+            min(target_from, target_to),
+            max(target_from, target_to),
+            strand = 1 if target_from <= target_to else -1
+        )
+
+        query_from = hsp.coordinates[1][0]
+        query_to = hsp.coordinates[1][-1]
+        query_location = SimpleLocation(
+            min(query_from, query_to),
+            max(query_from, query_to),
+            strand = 1 if query_from <= query_to else -1
+        )
+
+        import pdb; pdb.set_trace()
+                
 class Insertion(SeqRecord):
-    def __init__(self, seqrecord, **kwargs):
-        kwargs = kwargs | {
-            "id": seqrecord.id,
-            "name": seqrecord.name,
-            "description": seqrecord.description,
-            "dbxrefs": seqrecord.dbxrefs,
-            "features": seqrecord.features,
-            "annotations": seqrecord.annotations,
-            "letter_annotations": seqrecord.letter_annotations,
-        }
-        super().__init__(seqrecord.seq, **kwargs)
-        self.transposon = None
-        self.position = None
+    def __init__(
+            self,
+            seqrecord_or_seq,
+            id = "<unknown id>",
+            name = "<unknown name>",
+            description = "<unknown description>",
+            dbxrefs = None,
+            features = None,
+            annotations = None,
+            letter_annotations = None,
+            ):
 
+        if isinstance(seqrecord_or_seq, SeqRecord):
+            seq = seqrecord_or_seq.seq
+            id = seqrecord_or_seq.id
+            name = seqrecord_or_seq.name
+            description = seqrecord_or_seq.description
+            dbxrefs = seqrecord_or_seq.dbxrefs
+            features = seqrecord_or_seq.features
+            annotations = seqrecord_or_seq.annotations
+            letter_annotations = seqrecord_or_seq.letter_annotations
+        elif isinstance(seqrecord_or_seq, Seq):
+            seq = seqrecord_or_seq
+        else:
+            raise TypeError(f"Cannot construct Insertion from {type(seqrecord_or_seq)}")
+            
+        super().__init__(
+            seq,
+            id,
+            name,
+            description,
+            dbxrefs,
+            features,
+            annotations,
+            letter_annotations
+        )
+        
     @property
     def hsp_features(self):
         "Features of this insertion which are associated with HSPs"
@@ -64,8 +124,25 @@ class Insertion(SeqRecord):
 
     def transposon_search(self, transposon_sequences):
         return transposon_search([self], transposon_sequences)
-        
 
+    def between(self, x, y):
+        record = sequences.region_between(self, x, y)
+        return Insertion(record)
 
+    @property
+    def last_aligned_base(self):
+        last = 0
+        for feature in self.features:
+            last = max(last, feature.location.start, feature.location.end)
+        return last
+
+    @property
+    def suffix(self):
+        return self.between(self.last_aligned_base, len(self) + 1)
+
+    def merge_features_with(self, other):
+        for feature in other.features:
+            if feature not in self.features:
+                self.features.append(feature)
             
         

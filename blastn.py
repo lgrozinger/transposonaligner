@@ -42,7 +42,7 @@ def blastn(query_records, target_records, **kwargs):
         return Blast.parse(io.BytesIO(result.stdout))
 
 def hsp_to_location(hsp, target=True):
-    "Converts a HSP from a blast result to a Bio.SeqFeature.FeatureLocation."
+    "Converts a HSP from a blast result to a Bio.SeqFeature.SimpleLocation."
     sequence = 0 if target else 1
     x = int(hsp.coordinates[sequence, 0])
     y = int(hsp.coordinates[sequence, -1])
