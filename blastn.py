@@ -6,7 +6,7 @@ import pathlib
 import psutil
 import io
 
-from Bio.SeqFeature import FeatureLocation
+from Bio.SeqFeature import SimpleLocation
 from Bio.SeqFeature import SeqFeature
 from Bio import Blast
 from Bio import SeqIO
@@ -41,17 +41,17 @@ def blastn(query_records, target_records, **kwargs):
         result = subprocess.run(cmd, capture_output=True, check=True)
         return Blast.parse(io.BytesIO(result.stdout))
 
-def hsp_to_location(hsp, target=True):
+def hsp_location(hsp, target=True):
     "Converts a HSP from a blast result to a Bio.SeqFeature.SimpleLocation."
     sequence = 0 if target else 1
     x = int(hsp.coordinates[sequence, 0])
     y = int(hsp.coordinates[sequence, -1])
     strand = 1 if x <= y else -1
-    return FeatureLocation(min(x, y), max(x, y), strand=strand)
+    return SimpleLocation(min(x, y), max(x, y), strand=strand)
 
-def hsp_to_feature(hsp, target=True):
+def hsp_feature(hsp, target=True):
     "Converts a HSP from a blast result to a Bio.SeqFeature.SeqFeature."
-    location = hsp_to_location(hsp, target=target)
+    location = hsp_location(hsp, target=target)
     qualifiers = {"label": hsp.query.id if target else hsp.target.name}
     feature = SeqFeature(location, type="misc_feature", qualifiers=qualifiers)
     feature.hsp = hsp
@@ -69,11 +69,11 @@ def align(query_records, target_records, **kwargs):
             query_record = get_query(hit, query_records)
             target_record = get_target(hit, target_records)
             for hsp in hit:
-                query_feature = hsp_to_feature(hsp, target=False)
+                query_feature = hsp_feature(hsp, target=False)
                 query_record.features.append(query_feature)
                 hsp.query = query_record
                 
-                target_feature = hsp_to_feature(hsp, target=True)
+                target_feature = hsp_feature(hsp, target=True)
                 target_record.features.append(target_feature)
                 hsp.target = target_record
 
