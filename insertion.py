@@ -39,21 +39,9 @@ class AlignedFeature(SeqFeature):
 
 class TransposonFeature(AlignedFeature):
     def __init__(self, hsp, parent):
-        target_from = hsp.coordinates[0][0]
-        target_to = hsp.coordinates[0][-1]
-        target_location = SimpleLocation(
-            min(target_from, target_to),
-            max(target_from, target_to),
-            strand = 1 if target_from <= target_to else -1
-        )
-
-        query_from = hsp.coordinates[1][0]
-        query_to = hsp.coordinates[1][-1]
-        query_location = SimpleLocation(
-            min(query_from, query_to),
-            max(query_from, query_to),
-            strand = 1 if query_from <= query_to else -1
-        )
+        query_location = blastn.hsp_to_location(hsp, target=False)
+        target_location = blastn.hsp_to_location(hsp, target=True)
+        self.hsp = hsp
 
         import pdb; pdb.set_trace()
                 
