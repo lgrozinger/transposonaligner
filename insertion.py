@@ -3,34 +3,51 @@ from Bio.SeqFeature import SeqFeature
 from Bio.SeqFeature import SimpleLocation
 from Bio.Seq import Seq
 
+import copy
 import blastn
 import sequences
 
+
 class AlignedFeature(SeqFeature):
-    pass
-
-class TransposonFeature(AlignedFeature):
-    def __init__(self, hsp, parent):
-        query_location = blastn.hsp_to_location(hsp, target=False)
-        target_location = blastn.hsp_to_location(hsp, target=True)
-        self.hsp = hsp
-
-class InsertedFeature(AlignedFeature):
     def __init__(self, hsp, host, donor):
         self.hsp = hsp
         self.donor = donor
         self.donor_location = blastn.hsp_location(hsp, target=True)
         location = blastn.hsp_location(hsp, target=False)
-        qualifiers = {"label": self.donor.name}
+        qualifiers = {
+            "label": self.donor.name,
+            "donor_start": self.donor_location.start,
+            "donor_end": self.donor_location.end,
+            "donor_strand": self.donor_location.strand,
+        }
         super().__init__(location, "misc_feature", self.donor.id, qualifiers)
+        
 
-def transposon_search(reads, donors):
+class InsertedFeature(AlignedFeature):
+    def __init__(self, *args):
+        super().__init__(*args)
+
+def insertion_search(reads, donors):
     for alignment in blastn.blastn(reads, donors, word_size=12):
         for hit in alignment:
             for hsp in hit:
                 read = next(x for x in reads if x.id == hsp.query.id)
                 donor = next(x for x in donors if x.id == hsp.target.id)
                 read.features.append(InsertedFeature(hsp, read, donor))
+
+class GenomeFeature(AlignedFeature):
+    def __init__(self, *args):
+        super().__init__(*args)
+
+def genome_search(reads, donors):
+    masked_reads = [read.mask_insertion() for read in reads]
+    for alignment in blastn.blastn(masked_reads, donors):
+        for hit in alignment:
+            for hsp in hit:
+                read = next(x for x in reads if x.id == hsp.query.id)
+                donor = next(x for x in donors if x.name == hsp.target.name)
+                print(f"Genome HSP in {read.name}")
+                read.features.append(GenomeFeature(hsp, read, donor))
 
 class Read(SeqRecord):
     def __init__(
@@ -71,61 +88,49 @@ class Read(SeqRecord):
         )
         
     @property
-    def hsp_features(self):
-        "Features of this insertion which are associated with HSPs"
-        return [f for f in self.features if hasattr(f, "hsp")]
-
-    def hsp_features_from(self, target):
-        "Features of this insertion which are associated with HSPs paired with target"
-        return [f for f in self.hsp_features if f.hsp.target.name == target.name]
+    def aligned_features(self):
+        "Features of this read that come from alignments."
+        return [f for f in self.features if isinstance(f, AlignedFeature)]
 
     @property
-    def hsps(self):
-        "The HSPs associated with this insertion"
-        return [f.hsp for f in self.hsp_features]
-
-    def hsps_from(self, target):
-        "The HSPs associated with this insertion paired with target"
-        return [h for h in self.hsps if h.target.name == target.name]
-
-    def has_hsp_from(self, target):
-        "Returns True if this insertion has HSPs paired with target"
-        return bool(self.hsps_from(target))
+    def inserted_features(self):
+        "Features of the read that come from transposon insertions."
+        return [f for f in self.features if isinstance(f, InsertedFeature)]
 
     @property
-    def insertion_features(self):
-        return [f for f in self.features if isinstance(f, InsertionFeature)]
+    def has_insertion(self):
+        "Returns True if this read has alignments from a transposon insertion."
+        return bool(self.inserted_features)
     
     @property
-    def has_transposon(self):
-        "Returns True if this insertion is known to include transposon sequence"
-        return self.transposon is not None
+    def hsps(self):
+        "All the HSPs associated with this read."
+        return [f.hsp for f in self.aligned_features]
+
+    def aligned_features_from(self, donor):
+        "Features of this read that come from alignments with donor."
+        return [f for f in self.aligned_features if f.donor.id == donor.id]
+
+    def hsps_from(self, donor):
+        "The HSPs associated with this read that come from donor."
+        return [f.hsp for f in self.aligned_features_from(donor)]
+
+    def has_hsp_from(self, donor):
+        "Returns True if this read has HSPs from donor"
+        return bool(self.hsps_from(donor))
 
     def transposon_search(self, transposon_sequences):
         return transposon_search([self], transposon_sequences)
 
     def mask_insertion(self):
-        mask = sum(i.location for i in self.insertion_features)
-        seq = ("N" if i in mask else a for (i, a) in enumerate(self))
-        seq = Seq("".join(seq))
         read = copy.deepcopy(self)
-        read.seq = seq
+        if self.has_insertion:
+            mask = sum(i.location for i in self.inserted_features)
+            seq = ("N" if i in mask else a for (i, a) in enumerate(self))
+            seq = Seq("".join(seq))
+            read = copy.deepcopy(self)
+            read.seq = seq
         return read
-
-    def between(self, x, y):
-        record = sequences.region_between(self, x, y)
-        return Read(record)
-
-    @property
-    def last_aligned_base(self):
-        last = 0
-        for feature in self.features:
-            last = max(last, feature.location.start, feature.location.end)
-        return last
-
-    @property
-    def suffix(self):
-        return self.between(self.last_aligned_base, len(self) + 1)
 
     def merge_features_with(self, other):
         for feature in other.features:

@@ -18,9 +18,18 @@ vectors = {
     "pBAMD1-2-pBAD-YFP_(4A)": vectors["pBAMD1-2-pBAD-YFP_(4A)"][2416:2552],
 }
 
-insertion.transposon_search(reads.values(), vectors.values())
+insertion.insertion_search(reads.values(), vectors.values())
 
 genome = {g.id: g for g in SeqIO.parse(DATADIR / "pputidakt2440.gb", "genbank")}
+
+insertion.genome_search(reads.values(), genome.values())
+
+for read in reads.values():
+    SeqIO.write(read, DATADIR / f"results/{read.id}.processed.gb", "genbank")
+
+
+
+
 
 # suffixes = [i.suffix for i in reads.values()]
 # blastn.align(suffixes, genome.values(), word_size=8)
@@ -28,5 +37,5 @@ genome = {g.id: g for g in SeqIO.parse(DATADIR / "pputidakt2440.gb", "genbank")}
 # for i in suffixes:
 #     reads[i.id].merge_features_with(i)
     
-for read in reads.values():
-    SeqIO.write(read, DATADIR / f"results/{read.id}.processed.gb", "genbank")
+# for read in reads.values():
+#     SeqIO.write(read, DATADIR / f"results/{read.id}.processed.gb", "genbank")
