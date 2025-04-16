@@ -6,34 +6,6 @@ from Bio.Seq import Seq
 import blastn
 import sequences
 
-def query(hit, insertions):
-    return next(filter(lambda x: x.id == hit[0].query.id, insertions))
-
-def target(hit, insertions):
-    return next(filter(lambda x: x.name == hit.target.name, insertions))
-
-def transposon_search(insertions, transposons):
-    for alignment in blastn.blastn(insertions, transposons, word_size=8):
-        for hit in alignment:
-            insertion = query(hit, insertions)
-            transposon = target(hit, transposons)
-            insertion.features.append(TransposonFeature(hit, insertion))
-
-    for insertion in insertions:
-        transposon_features = []
-        for transposon in transposons:
-            transposon_features += insertion.hsp_features_from(transposon)
-
-        if transposon_features:
-            scorefun = lambda f: blastn.hsp_score(f.hsp)
-            best = sorted(transposon_features, key=scorefun)[-1]
-            new_features = [f for f in insertion.features if f not in transposon_features]
-            insertion.features = new_features
-            insertion.features.append(best)
-            insertion.transposon = best.hsp.target
-
-    return None
-
 class AlignedFeature(SeqFeature):
     pass
 
@@ -43,9 +15,24 @@ class TransposonFeature(AlignedFeature):
         target_location = blastn.hsp_to_location(hsp, target=True)
         self.hsp = hsp
 
-        import pdb; pdb.set_trace()
-                
-class Insertion(SeqRecord):
+class InsertedFeature(AlignedFeature):
+    def __init__(self, hsp, host, donor):
+        self.hsp = hsp
+        self.donor = donor
+        self.donor_location = blastn.hsp_location(hsp, target=True)
+        location = blastn.hsp_location(hsp, target=False)
+        qualifiers = {"label": self.donor.name}
+        super().__init__(location, "misc_feature", self.donor.id, qualifiers)
+
+def transposon_search(reads, donors):
+    for alignment in blastn.blastn(reads, donors, word_size=12):
+        for hit in alignment:
+            for hsp in hit:
+                read = next(x for x in reads if x.id == hsp.query.id)
+                donor = next(x for x in donors if x.id == hsp.target.id)
+                read.features.append(InsertedFeature(hsp, read, donor))
+
+class Read(SeqRecord):
     def __init__(
             self,
             seqrecord_or_seq,
@@ -106,6 +93,10 @@ class Insertion(SeqRecord):
         return bool(self.hsps_from(target))
 
     @property
+    def insertion_features(self):
+        return [f for f in self.features if isinstance(f, InsertionFeature)]
+    
+    @property
     def has_transposon(self):
         "Returns True if this insertion is known to include transposon sequence"
         return self.transposon is not None
@@ -113,9 +104,17 @@ class Insertion(SeqRecord):
     def transposon_search(self, transposon_sequences):
         return transposon_search([self], transposon_sequences)
 
+    def mask_insertion(self):
+        mask = sum(i.location for i in self.insertion_features)
+        seq = ("N" if i in mask else a for (i, a) in enumerate(self))
+        seq = Seq("".join(seq))
+        read = copy.deepcopy(self)
+        read.seq = seq
+        return read
+
     def between(self, x, y):
         record = sequences.region_between(self, x, y)
-        return Insertion(record)
+        return Read(record)
 
     @property
     def last_aligned_base(self):
