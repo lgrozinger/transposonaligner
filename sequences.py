@@ -64,7 +64,7 @@ def translate_feature(feature, from_location, to_location):
     end = to_location.end + feature.location.end - from_location.end
     strand = feature.location.strand
     
-    location = FeatureLocation(min(start, end), max(start, end), strand=strand)
+    location = SimpleLocation(min(start, end), max(start, end), strand=strand)
     feature = copy.deepcopy(feature)
     feature.location = location
     return feature

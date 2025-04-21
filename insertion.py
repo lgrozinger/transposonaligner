@@ -4,50 +4,35 @@ from Bio.SeqFeature import SimpleLocation
 from Bio.Seq import Seq
 
 import copy
-import blastn
-import sequences
+import pandas
 
+from blastn import blastn
+from alignedfeature import InsertedFeature
+from alignedfeature import GenomeFeature
 
-class AlignedFeature(SeqFeature):
-    def __init__(self, hsp, host, donor):
-        self.hsp = hsp
-        self.donor = donor
-        self.donor_location = blastn.hsp_location(hsp, target=True)
-        location = blastn.hsp_location(hsp, target=False)
-        qualifiers = {
-            "label": self.donor.name,
-            "donor_start": self.donor_location.start,
-            "donor_end": self.donor_location.end,
-            "donor_strand": self.donor_location.strand,
-        }
-        super().__init__(location, "misc_feature", self.donor.id, qualifiers)
-        
-
-class InsertedFeature(AlignedFeature):
-    def __init__(self, *args):
-        super().__init__(*args)
 
 def insertion_search(reads, donors):
-    for alignment in blastn.blastn(reads, donors, word_size=12):
+    options = {"evalue": 0.01}
+    for alignment in blastn(reads, donors, **options):
         for hit in alignment:
             for hsp in hit:
                 read = next(x for x in reads if x.id == hsp.query.id)
                 donor = next(x for x in donors if x.id == hsp.target.id)
-                read.features.append(InsertedFeature(hsp, read, donor))
-
-class GenomeFeature(AlignedFeature):
-    def __init__(self, *args):
-        super().__init__(*args)
+                insert = InsertedFeature(hsp, read, donor)
+                read.features.append(insert)
+                read.features += insert.donor_features
 
 def genome_search(reads, donors):
     masked_reads = [read.mask_insertion() for read in reads]
-    for alignment in blastn.blastn(masked_reads, donors):
+    options = {"evalue": 0.01, "word_size": 10}
+    for alignment in blastn(masked_reads, donors, **options):
         for hit in alignment:
             for hsp in hit:
                 read = next(x for x in reads if x.id == hsp.query.id)
                 donor = next(x for x in donors if x.name == hsp.target.name)
-                print(f"Genome HSP in {read.name}")
-                read.features.append(GenomeFeature(hsp, read, donor))
+                genome = GenomeFeature(hsp, read, donor)
+                read.features.append(genome)
+                read.features += genome.donor_features
 
 class Read(SeqRecord):
     def __init__(
@@ -98,14 +83,83 @@ class Read(SeqRecord):
         return [f for f in self.features if isinstance(f, InsertedFeature)]
 
     @property
+    def transposon(self):
+        "Returns the supposed transposon system inserted into this read."
+        if len(self.inserted_features) > 1:
+            raise TypeError("Must run choose_insertion first")
+        return self.inserted_features[0] if self.has_insertion else None
+
+    @property
+    def genome_features(self):
+        "Features of the read that come from a genome."
+        return [f for f in self.features if isinstance(f, GenomeFeature)]
+
+    @property
     def has_insertion(self):
         "Returns True if this read has alignments from a transposon insertion."
         return bool(self.inserted_features)
-    
+
+    @property
+    def has_genome(self):
+        "Returns True if this read has alignments from a genome."
+        return bool(self.genome_features)
+
     @property
     def hsps(self):
         "All the HSPs associated with this read."
         return [f.hsp for f in self.aligned_features]
+
+    @property
+    def default_datarow(self):
+        return {
+            "name": self.id,
+            "read length": len(self),
+            
+            "transposon": None,
+            "transposon evalue": None,
+            "transposon bit score": None,
+            "transposon identity": None,
+            
+            "genome": None,
+            "genome evalue": None,
+            "genome bit score": None,
+            "genome identity": None,
+            "genome length": None,
+            "genome mismatch": None,
+            "genome gaps": None,
+            "genome start": None,
+            "genome end": None,
+            "genome strand": None,
+            
+            "insertion": None,
+            "insertion name": None,
+            "insertion type": None,
+            "insertion strand": None,
+            "insertion product": None,
+    }
+    
+    @property
+    def dataframe(self):
+        rows = []
+        common = self.default_datarow
+        if self.has_insertion:
+            common = common | {
+                "transposon": self.transposon.donor.name,
+                "transposon evalue": self.transposon.evalue,
+                "transposon bit score": self.transposon.bitscore,
+                "transposon identity": self.transposon.identity,
+                "transposon length": int(self.transposon.length),
+                "transposon start": int(self.transposon.location.start),
+                "transposon end": int(self.transposon.location.end),
+            }
+            
+        if self.has_genome:
+            for candidate in self.genome_features:
+                rows.append(common | candidate.dataframe)
+        else:
+            rows.append(common)
+
+        return pandas.DataFrame(rows)
 
     def aligned_features_from(self, donor):
         "Features of this read that come from alignments with donor."
@@ -119,8 +173,8 @@ class Read(SeqRecord):
         "Returns True if this read has HSPs from donor"
         return bool(self.hsps_from(donor))
 
-    def transposon_search(self, transposon_sequences):
-        return transposon_search([self], transposon_sequences)
+    def insertion_search(self, inserted_sequences):
+        return insertion_search([self], inserted_sequences)
 
     def mask_insertion(self):
         read = copy.deepcopy(self)
@@ -132,9 +186,26 @@ class Read(SeqRecord):
             read.seq = seq
         return read
 
-    def merge_features_with(self, other):
-        for feature in other.features:
-            if feature not in self.features:
-                self.features.append(feature)
-            
-        
+    def choose_insertion(self):
+        if self.has_insertion:
+            best = sorted(self.inserted_features, key=lambda x: len(x))[-1]
+            for insertion in self.inserted_features:
+                self.features.remove(insertion)
+                for feature in insertion.donor_features:
+                    self.features.remove(feature)
+            self.features.append(best)
+            self.features += best.donor_features
+
+    def choose_genome(self):
+        if self.has_genome:
+            scorer = lambda x: (min(x.location.start, x.location.end), -len(x))
+            best_score = min(scorer(x) for x in self.genome_features)
+            best = [x for x in self.genome_features if scorer(x) == best_score]
+            for genome in self.genome_features:
+                self.features.remove(genome)
+                for feature in genome.donor_features:
+                    self.features.remove(feature)
+            for genome in best:
+                self.features.append(genome)
+                self.features += genome.donor_features
+

@@ -2,6 +2,7 @@ from Bio import SeqIO
 
 from pathlib import Path
 
+import pandas
 import sequences
 import blastn
 import fastx
@@ -25,17 +26,11 @@ genome = {g.id: g for g in SeqIO.parse(DATADIR / "pputidakt2440.gb", "genbank")}
 insertion.genome_search(reads.values(), genome.values())
 
 for read in reads.values():
+   read.choose_insertion()
+   read.choose_genome()
+
+for read in reads.values():
     SeqIO.write(read, DATADIR / f"results/{read.id}.processed.gb", "genbank")
 
-
-
-
-
-# suffixes = [i.suffix for i in reads.values()]
-# blastn.align(suffixes, genome.values(), word_size=8)
-
-# for i in suffixes:
-#     reads[i.id].merge_features_with(i)
-    
-# for read in reads.values():
-#     SeqIO.write(read, DATADIR / f"results/{read.id}.processed.gb", "genbank")
+data = pandas.concat([read.dataframe for read in reads.values()])
+data.to_csv("/tmp/data.csv")
