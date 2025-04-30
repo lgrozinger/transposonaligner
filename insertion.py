@@ -11,9 +11,8 @@ from alignedfeature import InsertedFeature
 from alignedfeature import GenomeFeature
 
 
-def insertion_search(reads, donors):
-    options = {"evalue": 0.01}
-    for alignment in blastn(reads, donors, **options):
+def insertion_search(reads, donors, **kwargs):
+    for alignment in blastn(reads, donors, **kwargs):
         for hit in alignment:
             for hsp in hit:
                 read = next(x for x in reads if x.id == hsp.query.id)
@@ -22,10 +21,9 @@ def insertion_search(reads, donors):
                 read.features.append(insert)
                 read.features += insert.donor_features
 
-def genome_search(reads, donors):
+def genome_search(reads, donors, **kwargs):
     masked_reads = [read.mask_insertion() for read in reads]
-    options = {"evalue": 0.01, "word_size": 10}
-    for alignment in blastn(masked_reads, donors, **options):
+    for alignment in blastn(masked_reads, donors, **kwargs):
         for hit in alignment:
             for hsp in hit:
                 read = next(x for x in reads if x.id == hsp.query.id)
@@ -111,51 +109,49 @@ class Read(SeqRecord):
 
     @property
     def default_datarow(self):
-        return {
-            "name": self.id,
-            "read length": len(self),
-            
-            "transposon": None,
-            "transposon evalue": None,
-            "transposon bit score": None,
-            "transposon identity": None,
-            
-            "genome": None,
-            "genome evalue": None,
-            "genome bit score": None,
-            "genome identity": None,
-            "genome length": None,
-            "genome mismatch": None,
-            "genome gaps": None,
-            "genome start": None,
-            "genome end": None,
-            "genome strand": None,
-            
-            "insertion": None,
-            "insertion name": None,
-            "insertion type": None,
-            "insertion strand": None,
-            "insertion product": None,
-    }
+        return {"name": self.id, "read length": len(self)}
+
+    @property
+    def genome_offset(self):
+        offset = None
+        if self.has_genome and self.has_insertion:
+            starts = [min(x.location.start, x.location.end) for x in self.genome_features]
+            if len(set(starts)) > 1:
+                raise TypeError("Must run choose_genome before asking for offset.")
+
+            location = self.genome_features[0].location
+            offset = min(location.start, location.end) - self.transposon.location.end
+        return offset
+
+    @property
+    def gap(self):
+        if self.has_genome and self.has_insertion:
+            x = self.transposon.location.end
+            y = min(genome.location.start for genome in self.genome_features)
+            return self[x:y]
+        else:
+            return None
     
     @property
     def dataframe(self):
         rows = []
-        common = self.default_datarow
+        common = {"name": self.id, "read length": len(self)}
         if self.has_insertion:
-            common = common | {
-                "transposon": self.transposon.donor.name,
-                "transposon evalue": self.transposon.evalue,
-                "transposon bit score": self.transposon.bitscore,
-                "transposon identity": self.transposon.identity,
-                "transposon length": int(self.transposon.length),
-                "transposon start": int(self.transposon.location.start),
-                "transposon end": int(self.transposon.location.end),
-            }
+            common["transposon"] = self.transposon.donor.name
+            common["transposon evalue"] = self.transposon.evalue
+            common["transposon bit score"] = self.transposon.bitscore
+            common["transposon identity"] = self.transposon.identity
+            common["transposon length"] = int(self.transposon.length)
+            common["transposon start"] = int(self.transposon.location.start)
+            common["transposon end"] = int(self.transposon.location.end)
+            common["genome offset"] = self.genome_offset
+            common["multiple candidates"] = len(self.genome_features) > 1
+            common["gap sequence"] = self.gap.seq if self.genome_offset is not None else None
             
         if self.has_genome:
             for candidate in self.genome_features:
-                rows.append(common | candidate.dataframe)
+                data = candidate.dataframe
+                rows.append(common | data)
         else:
             rows.append(common)
 
@@ -187,8 +183,11 @@ class Read(SeqRecord):
         return read
 
     def choose_insertion(self):
+        "Keep only the best insertion vector alignment, remove the rest."
         if self.has_insertion:
-            best = sorted(self.inserted_features, key=lambda x: len(x))[-1]
+            def sortkey(x):
+                return (max(x.location.start, x.location.end), len(x))
+            best = sorted(self.inserted_features, key=sortkey)[-1]
             for insertion in self.inserted_features:
                 self.features.remove(insertion)
                 for feature in insertion.donor_features:
@@ -197,6 +196,7 @@ class Read(SeqRecord):
             self.features += best.donor_features
 
     def choose_genome(self):
+        "Remove all but the first (leftmost) genome alignments."
         if self.has_genome:
             scorer = lambda x: (min(x.location.start, x.location.end), -len(x))
             best_score = min(scorer(x) for x in self.genome_features)

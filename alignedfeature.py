@@ -33,8 +33,8 @@ class AlignedFeature(SeqFeature):
         self.gaps = self.hsp.annotations["gaps"]
 
     def sequence_prefix(self, n):
-        start = self.hsp.coordinates[0][0]
-        finish = min(self.hsp.coordinates[0][-1], start + n)
+        start = min(self.hsp.coordinates[0])
+        finish = min(max(self.hsp.coordinates[0]), start + n)
         return self.hsp.target.seq[start:finish]
 
     def alignment_prefix(self, n):
@@ -102,5 +102,4 @@ class GenomeFeature(AlignedFeature):
             "genome loci": self.loci,
             "genome prefix": self.sequence_prefix(10),
             "genome align": self.alignment_prefix(10),
-            "genome offset": 
         }
