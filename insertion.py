@@ -21,14 +21,14 @@ def insertion_search(reads, donors, **kwargs):
                 read.features.append(insert)
                 read.features += insert.donor_features
 
-def genome_search(reads, donors, **kwargs):
+def genome_search(reads, donors, prefix_length, **kwargs):
     masked_reads = [read.mask_insertion() for read in reads]
     for alignment in blastn(masked_reads, donors, **kwargs):
         for hit in alignment:
             for hsp in hit:
                 read = next(x for x in reads if x.id == hsp.query.id)
                 donor = next(x for x in donors if x.name == hsp.target.name)
-                genome = GenomeFeature(hsp, read, donor)
+                genome = GenomeFeature(hsp, read, donor, prefix_length=prefix_length)
                 read.features.append(genome)
                 read.features += genome.donor_features
 

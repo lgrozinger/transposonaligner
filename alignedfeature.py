@@ -4,7 +4,7 @@ import blastn
 import annotate
 
 class AlignedFeature(SeqFeature):
-    def __init__(self, hsp, host, donor):
+    def __init__(self, hsp, host, donor, **kwargs):
         location = blastn.hsp_location(hsp, target=False)
         super().__init__(location, "misc_feature", donor.id)
         
@@ -15,7 +15,7 @@ class AlignedFeature(SeqFeature):
             "label": self.donor.name,
             "donor_start": self.donor_location.start,
             "donor_end": self.donor_location.end,
-            "donor_strand": self.donor_location.strand,
+            "donor_strand": "plus" if self.donor_location.strand > 0 else "minus",
             "evalue": self.hsp.annotations["evalue"],
         }
         self.donor_features = annotate.translated_features_in(
@@ -31,24 +31,29 @@ class AlignedFeature(SeqFeature):
         self.identity = self.hsp.annotations["identity"] / self.length
         self.mismatch = self.length - self.hsp.annotations["identity"]
         self.gaps = self.hsp.annotations["gaps"]
+        self.prefix_length = kwargs.get("prefix_length", None)
 
-    def sequence_prefix(self, n):
+    def sequence_prefix(self, n=None):
+        if n is None:
+            n = self.prefix_length            
         start = min(self.hsp.coordinates[0])
         finish = min(max(self.hsp.coordinates[0]), start + n)
         return self.hsp.target.seq[start:finish]
 
-    def alignment_prefix(self, n):
+    def alignment_prefix(self, n=None):
+        if n is None:
+            n = self.prefix_length
         midlines = self.hsp.annotations["midline"]
         finish = min(len(midlines), n)
         return midlines[:finish].replace(" ", ".")
         
 class InsertedFeature(AlignedFeature):
-    def __init__(self, *args):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args)
 
 class GenomeFeature(AlignedFeature):
-    def __init__(self, *args):
-        super().__init__(*args)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
     @property
     def loci(self):
@@ -76,12 +81,13 @@ class GenomeFeature(AlignedFeature):
         genes = [g for gs in genes for g in gs]
         types = [f.type for f in features]
         strands = [f.location.strand for f in features]
+        strands = ["plus" if s > 0 else "minus" for s in strands]
         products = [f.qualifiers.get("product", [None]) for f in features]
         products = [p for ps in products for p in ps]
         return {
-            "insertion": loci if loci else None,
+            "insertion locus": loci if loci else None,
             "insertion gene": genes if genes else None,
-            "insertion type": types if features else None,
+            "sequence type": types if features else None,
             "insertion strand": strands if strands else None,
             "insertion product": products if products else None,
         }
@@ -98,8 +104,8 @@ class GenomeFeature(AlignedFeature):
             "genome gaps": self.gaps,
             "genome start": int(self.donor_location.start),
             "genome end": int(self.donor_location.end),
-            "genome strand": self.donor_location.strand,
+            "genome strand": "plus" if self.donor_location.strand > 0 else "minus",
             "genome loci": self.loci,
-            "genome prefix": self.sequence_prefix(10),
-            "genome align": self.alignment_prefix(10),
+            "genome prefix": self.sequence_prefix(),
+            "genome align": self.alignment_prefix(),
         }

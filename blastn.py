@@ -16,6 +16,31 @@ def nthreads():
     n = cpu_count() if cpu_count() is not None else 1
     return max(1, n // 2)
 
+def sam(query_records, target_records, **kwargs):
+    "Does a BLASTN query and return SAM output."
+    with TemporaryDirectory() as directory:
+        query_fasta = Path(directory).resolve() / "query.fasta"
+        SeqIO.write(query_records, query_fasta, "fasta")
+
+        target_fasta = Path(directory).resolve() / "target.fasta"
+        SeqIO.write(target_records, target_fasta, "fasta")
+
+        outputfile = Path(directory).resolve() / "output.sam"
+
+        cmd = ["blastn", "-query", str(query_fasta)]
+        cmd += ["-subject", str(target_fasta)]
+        cmd += ["-parse_deflines"]
+        cmd += ["-out", str(outputfile)]
+        cmd += ["-outfmt", str(17)]
+        for argument in kwargs:
+            cmd += [f"-{argument}", str(kwargs[argument])]
+
+        print(" ".join(cmd))
+        result = run(cmd, capture_output=True, check=True)
+
+        with open(outputfile, "r") as f:
+            return f.read()
+
 def blastn(query_records, target_records, **kwargs):
     "Does a BLASTN query for query_records against target_records."
     with TemporaryDirectory() as directory:
