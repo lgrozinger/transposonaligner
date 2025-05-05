@@ -1,0 +1,32 @@
+LOCUS       pBAMD1-2-MarC9            28 bp    ds-DNA           UNK 01-JAN-1980
+DEFINITION  .
+ACCESSION   pBAMD1-2-MarC9
+VERSION     pBAMD1-2-MarC9
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    complement(1..28)
+                     /label="IR"
+                     /ApEinfo_revcolor="#c7b0e3"
+                     /ApEinfo_fwdcolor="#c7b0e3"
+ORIGIN
+        1 tagaccgggg acttatcatc caacctgt
+//
+LOCUS       pBAMD1-2-pBAD-YFP_(4A)    19 bp    ds-DNA           UNK 01-JAN-1980
+DEFINITION  .
+ACCESSION   pBAMD1-2-pBAD-YFP_(4A)
+VERSION     pBAMD1-2-pBAD-YFP_(4A)
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..19
+                     /label="mosaic element O"
+                     /ApEinfo_revcolor="#b4abac"
+                     /ApEinfo_fwdcolor="#b4abac"
+ORIGIN
+        1 agatgtgtat aagagacag
+//

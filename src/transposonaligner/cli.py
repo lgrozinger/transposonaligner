@@ -5,11 +5,11 @@ from Bio import SeqIO
 
 import argparse
 import pandas
-import utils
-import blastn
-import qc
-import insertion
-import config
+from transposonaligner import utils
+from transposonaligner import blastn
+from transposonaligner import qc
+from transposonaligner import insertion
+from transposonaligner import config
 
 
 CONFIG = config.get_configuration(config.get_parser())

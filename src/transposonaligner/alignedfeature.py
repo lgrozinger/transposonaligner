@@ -1,16 +1,17 @@
 from Bio.SeqFeature import SeqFeature
 
-import blastn
-import annotate
+from transposonaligner.blastn import hsp_location
+from transposonaligner.annotate import translated_features_in
+
 
 class AlignedFeature(SeqFeature):
     def __init__(self, hsp, host, donor, **kwargs):
-        location = blastn.hsp_location(hsp, target=False)
+        location = hsp_location(hsp, target=False)
         super().__init__(location, "misc_feature", donor.id)
         
         self.hsp = hsp
         self.donor = donor
-        self.donor_location = blastn.hsp_location(hsp, target=True)
+        self.donor_location = hsp_location(hsp, target=True)
         self.qualifiers = {
             "label": self.donor.name,
             "donor_start": self.donor_location.start,
@@ -18,7 +19,7 @@ class AlignedFeature(SeqFeature):
             "donor_strand": "plus" if self.donor_location.strand > 0 else "minus",
             "evalue": self.hsp.annotations["evalue"],
         }
-        self.donor_features = annotate.translated_features_in(
+        self.donor_features = translated_features_in(
             self.donor_location,
             self.location,
             self.donor,

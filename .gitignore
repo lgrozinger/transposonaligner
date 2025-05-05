@@ -1,0 +1,15 @@
+# Created by venv; see https://docs.python.org/3/library/venv.html
+*
+!.gitignore
+!src/
+src/*
+!src/transposonaligner/
+src/transposonaligner/*
+!src/transposonaligner/*.py
+!src/transposonaligner/*.toml
+!data/
+data/*
+!data/transposons.gb
+!data/pputidakt2440.gb
+!project.toml
+!MANIFEST.in

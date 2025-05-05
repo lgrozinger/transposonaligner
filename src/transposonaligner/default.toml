@@ -1,0 +1,35 @@
+[input]
+input_type = "fastq"
+extension = "ab1"
+sequencing_type = "sanger"
+
+[output]
+verbosity = 0
+outfile = "transposonaligner_results.csv"
+
+[fastqc]
+# path = None
+
+[sickle]
+# path = None
+quality = 20
+length = 20
+output = false
+
+[blastn]
+path = "blastn"
+
+[transposon]
+type = "genbank"
+output = false
+evalue = 0.1
+word_size = 4
+
+[genome]
+type = "genbank"
+output = true
+word_size = 4
+evalue = 1
+
+
+
