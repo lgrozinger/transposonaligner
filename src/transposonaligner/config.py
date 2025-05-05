@@ -243,8 +243,8 @@ def make_paths_absolute(config):
     outdir = absolute_path(config["output_dir"], os.getcwd())
     config["output_dir"] = outdir
 
-    config["transposon"] = [absolute_path(t, indir) for t in config["transposon"]]
-
+    config["transposon"] = [absolute_path(t, os.getcwd()) for t in config["transposon"]]
+    config["genome"] = [absolute_path(t, os.getcwd()) for t in config["genome"]]
     return config
     
 def get_configuration(parser):
