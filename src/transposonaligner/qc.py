@@ -34,8 +34,10 @@ def trimming(records, sequencing_type="sanger", quality=20, length=20, program="
         cmd += ["--output-file", str(output_path)]
         cmd += ["--qual-threshold", str(quality)]
         cmd += ["--length-threshold", str(length)]
-        cmd += ["--quiet"]
+        
         output = run(cmd, capture_output=True, check=True)
+        print(output.stdout.decode("utf-8"))
+        print(output.stderr.decode("utf-8"))
 
         with open(output_path, "r") as output_file:
             records = []
