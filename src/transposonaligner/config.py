@@ -52,41 +52,64 @@ def config_to_dict(config):
 def get_parser():
     parser = argparse.ArgumentParser(
         prog="XX",
-        description = "",
-        epilog = "",
+        description = """Use a set of sequencing reads to identify the positions of likely transposon integration events in genomes.
+
+        
+The integration events are identified using target sequences from the files provided in the `transposon` argument.
+
+        
+Integration events are position in the genomes by alignment of the remainder of the sequencing read.
+
+        
+Likely integration events annotated and saved in genbank format. A summary table is also produced containing detail on each likely event.""",
     )
 
     parser.add_argument("-v", action="count", default=0)
 
-    parser.add_argument("input_dir")
+    parser.add_argument(
+        "input_dir",
+        help="The directory containing the reads to be processed",
+    )
 
     parser.add_argument(
         "--sequencing-type",
         default="sanger",
-        choices=["sanger", "solexa", "illumina"]
+        choices=["sanger", "solexa", "illumina"],
+        help="The method from which the single end reads are obtained (default: sanger)",
     )
 
     parser.add_argument(
         "--input-type",
         default="fastq",
-        choices=["fasta", "fastq"]
+        choices=["fasta", "fastq"],
+        help="The file format in which the single end reads are saved (default: fastq)",
     )
 
     parser.add_argument(
         "--input-ext",
         default="ab1",
+        help="The file extension of the single end read files (default: ab1)",
     )
 
-    parser.add_argument("output_dir")
+    parser.add_argument(
+        "output_dir",
+        help="The directory in which to save results",
+    )
     
-    parser.add_argument("-o", default="results.csv", metavar="OUTPUT_FILE")
+    parser.add_argument(
+        "-o",
+        default="results.xlsx",
+        metavar="OUTPUT_FILE",
+        help="A filename for the output summary table (default: results.xlsx)",
+    )
 
     parser.add_argument(
         "-qc",
         nargs="?",
         const="fastqc",
         default=None,
-        metavar="PATH_TO_FASTQC"
+        metavar="PATH_TO_FASTQC",
+        help="If present, fastqc analysis of read quality is performed",
     )
 
     parser.add_argument(
@@ -94,26 +117,115 @@ def get_parser():
         nargs="?",
         const="sickle",
         default=None,
-        metavar="PATH_TO_SICKLE"
+        metavar="PATH_TO_SICKLE",
+        help="If present, sickle is used to trim the reads",
+        
     )
 
-    parser.add_argument("--trim-quality", default=20, type=int)
-    parser.add_argument("--trim-length", default=20, type=int)
-    parser.add_argument("--trim-save", action="store_true")
-    parser.add_argument("-blastn", default="blastn", metavar="PATH_TO_BLASTN")
-    parser.add_argument("-transposon", required=True, nargs="+")
-    parser.add_argument("--transposon-type", default="genbank")
-    parser.add_argument("--transposon-save", action="store_true")
-    parser.add_argument("--transposon-word-size", default=10, type=int)
-    parser.add_argument("--transposon-evalue", default=0.01, type=float)
-    parser.add_argument("-genome", required=True, nargs="+")
-    parser.add_argument("--genome-type", default="genbank")
-    parser.add_argument("--genome-save", action="store_true")
-    parser.add_argument("--genome-word-size", default=10, type=int)
-    parser.add_argument("--genome-evalue", default=0.01, type=float)
-    parser.add_argument("--genome-prefix", default=9, type=int)
-    parser.add_argument("--genome-window", default=18, type=int)
-    parser.add_argument("-config")
+    parser.add_argument(
+        "--trim-quality",
+        default=20,
+        type=int,
+        help="The quality threshold passed to sickle for trimming (default: 20)",
+    )
+    
+    parser.add_argument(
+        "--trim-length",
+        default=20,
+        type=int,
+        help="The length threshold passed to sickle for trimming (default: 20)"
+    )
+
+    parser.add_argument(
+        "--trim-save",
+        action="store_true",
+        help="If present, the trimmed reads will be saved in OUTPUT_DIR", 
+    )
+    
+    parser.add_argument(
+        "-blastn",
+        default="blastn",
+        metavar="PATH_TO_BLASTN",
+        help="The blastn executable (default: blastn)",
+    )
+
+    parser.add_argument(
+        "-transposon",
+        required=True,
+        nargs="+",
+        help="The file or files containing the sequences used to identify integrations", 
+    )
+    
+    parser.add_argument(
+        "--transposon-type",
+        default="genbank",
+        help="The file format of the file(s) given in TRANSPOSON (default: genbank)",
+    )
+    
+    parser.add_argument(
+        "--transposon-save",
+        action="store_true",
+        help="If present, save reads annotated with transposon sequences in OUTPUT_DIR"
+    )
+    
+    parser.add_argument(
+        "--transposon-word-size",
+        default=10,
+        type=int,
+        help="The word size passed to blastn for the transposon alignment (default: 10)",
+    )
+    
+    parser.add_argument(
+        "--transposon-evalue",
+        default=0.01,
+        type=float,
+        help="The evalue passed to blastn for the transposon alignment (default: 0.01)",
+    )
+    
+    parser.add_argument(
+        "-genome",
+        required=True,
+        nargs="+",
+        help="The file or files containing genomes for alignment",
+    )
+    
+    parser.add_argument(
+        "--genome-type",
+        default="genbank",
+        help="The file format of the file(s) given in GENOME (default: genbank)",
+    )
+    
+    parser.add_argument(
+        "--genome-save",
+        action="store_true",
+        help="If present, save reads annotated with all genome alignments in OUTPUT_DIR",
+    )
+    
+    parser.add_argument(
+        "--genome-word-size",
+        default=10,
+        type=int,
+        help="The word size passed to blastn for the genome alignment (default: 10)",
+    )
+    
+    parser.add_argument(
+        "--genome-evalue",
+        default=0.01,
+        type=float,
+        help="The evalue passed to blastn for the genome alignment (default: 0.01)",
+    )
+    
+    parser.add_argument(
+        "--genome-prefix",
+        default=9,
+        type=int,
+        help="The number of base pairs, after the integration site, of genomic DNA to include in the output summary table", 
+    )
+
+    parser.add_argument(
+        "-config",
+        help="A configuration file in TOML format. Command line arguments are overrided with value in the configuration file, if present"
+    )
 
     return parser
 

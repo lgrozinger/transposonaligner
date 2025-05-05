@@ -12,9 +12,6 @@ from transposonaligner import insertion
 from transposonaligner import config
 
 
-CONFIG = config.get_configuration(config.get_parser())
-DATADIR = Path(CONFIG["input_dir"]).resolve(strict=True)
-OUTDIR = Path(CONFIG["output_dir"]).resolve(strict=True)
 
 def find_transposons(reads, config):
     transposons = utils.load_transposons(config)
@@ -52,13 +49,22 @@ def find_genomes(reads, config):
     if config["genome_save"]:
         outdir = Path(config["output_dir"]).resolve(strict=True)
         for read in reads.values():
-            SeqIO.write(read, OUTDIR / f"{read.id}.genome.aligned.gb", "genbank")
+            SeqIO.write(read, config["output_dir"] / f"{read.id}.genome.aligned.gb", "genbank")
 
     for read in reads.values():
         read.choose_genome()
 
 
 def main():
+    try: 
+        CONFIG = config.get_configuration(config.get_parser())
+        DATADIR = Path(CONFIG["input_dir"]).resolve(strict=True)
+        OUTDIR = Path(CONFIG["output_dir"]).resolve(strict=True)
+    except FileNotFoundError as err:
+        print(f"Could not find the file: {err.filename}")
+        print("Please check the filenames given in arguments and whether they exist.")
+        return None
+
     reads = utils.load_reads(CONFIG)
 
     if CONFIG["qc"] is not None:
