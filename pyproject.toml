@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "transposonaligner"
+description = "Find transposon integrations in reads and align them to genomes."
+readme = "README.md"
+keywords = ["bioinformatics", "alignment", "genetics", "transposon", "scientific"]
+authors = [
+	{name = "Lewis Grozinger", email = "lewis.grozinger@cnb.csic.es"},
+]
+maintainers = [
+    	{name = "Lewis Grozinger", email = "lewis.grozinger@cnb.csic.es"},
+]
+version = "0.0.1"
+license = "MIT"
+requires-python = ">= 3.8"
+dependencies = ["biopython>1.8", "numpy>2.2", "pandas", "openpyxl", "psutil",]
+
+[project.scripts]
+xx = "transposonaligner.cli:main"
+
+[tool.setuptools]
+include-package-data = true
