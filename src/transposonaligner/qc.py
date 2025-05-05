@@ -25,20 +25,22 @@ def trimming(records, sequencing_type="sanger", quality=20, length=20, program="
     with TemporaryDirectory() as directory:
         directory = Path(directory).resolve()
         fastq_path = directory / "records.fastq"
+        output_path = directory / "sickleout.fastq"
         SeqIO.write(records, fastq_path, "fastq")
         
         cmd = [program, "se"]
         cmd += ["--fastq-file", str(fastq_path)]
         cmd += ["--qual-type", str(sequencing_type)]
-        cmd += ["--output-file", "/dev/stdout"]
+        cmd += ["--output-file", str(output_path)]
         cmd += ["--qual-threshold", str(quality)]
         cmd += ["--length-threshold", str(length)]
         cmd += ["--quiet"]
         output = run(cmd, capture_output=True, check=True)
-        fastq_output = StringIO(output.stdout.decode("utf-8"))
 
-        records = []
-        for record in SeqIO.parse(fastq_output, "fastq"):
-            record.annotations["molecule_type"] = "DNA"
-            records.append(record)
+        with open(output_path, "r") as output_file:
+            records = []
+            for record in SeqIO.parse(output_file, "fastq"):
+                record.annotations["molecule_type"] = "DNA"
+                records.append(record)
+                
         return records

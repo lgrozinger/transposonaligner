@@ -11,5 +11,5 @@ src/transposonaligner/*
 data/*
 !data/transposons.gb
 !data/pputidakt2440.gb
-!project.toml
+!pyproject.toml
 !MANIFEST.in
