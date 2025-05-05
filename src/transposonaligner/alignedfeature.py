@@ -37,9 +37,9 @@ class AlignedFeature(SeqFeature):
     def sequence_prefix(self, n=None):
         if n is None:
             n = self.prefix_length            
-        start = min(self.hsp.coordinates[0])
-        finish = min(max(self.hsp.coordinates[0]), start + n)
-        return self.hsp.target.seq[start:finish]
+        start = min(self.hsp.coordinates[1])
+        finish = min(max(self.hsp.coordinates[1]), start + n)
+        return self.hsp.query.seq[start:finish]
 
     def alignment_prefix(self, n=None):
         if n is None:

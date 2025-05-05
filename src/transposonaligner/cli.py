@@ -12,7 +12,6 @@ from transposonaligner import insertion
 from transposonaligner import config
 
 
-
 def find_transposons(reads, config):
     transposons = utils.load_transposons(config)
     insertion.insertion_search(
@@ -21,8 +20,6 @@ def find_transposons(reads, config):
         evalue=config["transposon_evalue"],
         word_size=config["transposon_word_size"],
     )
-
-    print(f"{sum(read.has_insertion for read in reads.values())} reads have transposon present")
 
     if config["transposon_save"]:
         outdir = Path(config["output_dir"]).resolve(strict=True)
@@ -42,9 +39,6 @@ def find_genomes(reads, config):
         evalue=config["genome_evalue"],
         word_size=config["genome_word_size"],
     )
-
-    print(f"{sum(read.has_genome for read in reads.values())} reads have genomic DNA present")
-    print(f"{sum(read.has_genome and read.has_insertion for read in reads.values())} reads have both transposon and genomic DNA present")
 
     if config["genome_save"]:
         outdir = Path(config["output_dir"]).resolve(strict=True)
@@ -92,8 +86,9 @@ def main():
 
     data = pandas.concat([read.dataframe for read in reads.values()])
     data.to_excel(OUTDIR / CONFIG["o"])
-    print(f"Saving result table to {OUTDIR / CONFIG['o']}")
+    print(f"Saving summary table to {OUTDIR / CONFIG['o']}")
 
+    return None
 
 if __name__ == "__main__":
     main()
