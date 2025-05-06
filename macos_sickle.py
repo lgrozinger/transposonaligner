@@ -19,7 +19,7 @@ def main():
     cmd += ["--qual-threshold", "20"]
     cmd += ["--length-threshold", "20"]
 
-    output = run(cmd, capture_output=True)
+    output = subprocess.run(cmd, capture_output=True)
 
     print(output.stdout.decode("utf-8"))
     print(output.stderr.decode("utf-8"))
