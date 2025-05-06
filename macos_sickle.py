@@ -15,6 +15,7 @@ def main():
 
     cmd = ["sickle", "se"]
     cmd += ["--fastq-file", str(fastq_path)]
+    cmd += ["--qual-type", "sanger"]
     cmd += ["--output-file", pathlib.Path(directory) / "sickeout.fastq"]
     cmd += ["--qual-threshold", "20"]
     cmd += ["--length-threshold", "20"]
