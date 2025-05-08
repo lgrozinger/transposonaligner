@@ -45,6 +45,11 @@ def find_genomes(reads, config):
         for read in reads.values():
             SeqIO.write(read, config["output_dir"] / f"{read.id}.genome.aligned.gb", "genbank")
 
+    if config["sam"]:
+        outdir = Path(config["output_dir"]).resolve(strict=True)
+        with open(outdir / "samgenomes.sam", "w") as f:
+            print(blastn.sam(reads.values(), genomes.values()), file=f)
+        
     for read in reads.values():
         read.choose_genome()
 

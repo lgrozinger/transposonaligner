@@ -37,6 +37,7 @@ def config_to_dict(config):
     add_config_property(d, "trim_length", config, "sickle", "length")
     add_config_property(d, "trim_save", config, "sickle", "output")
     add_config_property(d, "blastn", config, "blastn", "path")
+    add_config_property(d, "sam", config, "blastn", "sam")
     add_config_property(d, "transposon_type", config, "transposon", "type")
     add_config_property(d, "transposon_save", config, "transposon", "output")
     add_config_property(d, "transposon_word_size", config, "transposon", "word_size")
@@ -148,6 +149,13 @@ Likely integration events annotated and saved in genbank format. A summary table
         metavar="PATH_TO_BLASTN",
         help="The blastn executable (default: blastn)",
     )
+
+    parser.add_argument(
+        "-sam",
+        action="store_true",
+        help="If present, save the blastn output in SAM format in OUTPUT_DIR",
+    )
+
 
     parser.add_argument(
         "-transposon",
