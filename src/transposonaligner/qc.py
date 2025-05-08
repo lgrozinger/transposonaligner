@@ -32,8 +32,8 @@ def trimming(records, sequencing_type="sanger", quality=20, length=20, program="
         cmd += ["--fastq-file", str(fastq_path)]
         cmd += ["--qual-type", str(sequencing_type)]
         cmd += ["--output-file", str(output_path)]
-        cmd += ["--qual-threshold", str(quality)]
-        cmd += ["--length-threshold", str(length)]
+        cmd += ["-q", str(quality)]
+        cmd += ["-l", str(length)]
         
         output = run(cmd, capture_output=True, check=True)
         print(output.stdout.decode("utf-8"))
