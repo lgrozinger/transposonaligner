@@ -186,7 +186,7 @@ class Read(SeqRecord):
         "Keep only the best insertion vector alignment, remove the rest."
         if self.has_insertion:
             def sortkey(x):
-                return (max(x.location.start, x.location.end), len(x))
+                return (len(x), x.location.start, -x.location.end)
             best = sorted(self.inserted_features, key=sortkey)[-1]
             for insertion in self.inserted_features:
                 self.features.remove(insertion)

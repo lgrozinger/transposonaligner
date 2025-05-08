@@ -97,16 +97,16 @@ class GenomeFeature(AlignedFeature):
     def dataframe(self):
         return self.disrupted_dataframe | {
             "genome": self.donor.id,
-            "genome evalue": self.evalue,
-            "genome bit score": self.bitscore,
-            "genome identity": self.identity,
-            "genome length": int(self.length),
-            "genome mismatch": self.mismatch,
-            "genome gaps": self.gaps,
+            "genome alignment evalue": self.evalue,
+            "genome alignmenr bit score": self.bitscore,
+            "genome alignment identity": self.identity,
+            "genome alignment length": int(self.length),
+            "genome alignment mismatch": self.mismatch,
+            "genome alignment gaps": self.gaps,
             "genome start": int(self.donor_location.start),
             "genome end": int(self.donor_location.end),
             "genome strand": "plus" if self.donor_location.strand > 0 else "minus",
             "genome loci": self.loci,
             "genome prefix": self.sequence_prefix(),
-            "genome align": self.alignment_prefix(),
+            "genome alignment": self.alignment_prefix(),
         }
