@@ -16,10 +16,19 @@ maintainers = [
 version = "0.0.1"
 license = "MIT"
 requires-python = ">= 3.8"
-dependencies = ["biopython>1.8", "numpy>2.2", "pandas", "openpyxl", "psutil",]
+dependencies = [
+	     "biopython>1.8",
+	     "numpy>2.2",
+	     "pandas",
+	     "openpyxl", 
+	     "psutil",
+	     "argparse",
+	     "pathlib",
+]
 
 [project.scripts]
 xx = "transposonaligner.cli:main"
+meta = "transposonaligner.meta:main"
 
 [tool.setuptools]
 include-package-data = true

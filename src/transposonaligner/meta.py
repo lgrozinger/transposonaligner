@@ -1,0 +1,103 @@
+#!/usr/local/bin/python3
+import argparse
+import pandas
+import re
+import pathlib
+
+
+def get_args():
+    parser = argparse.ArgumentParser(
+        prog="meta",
+        description = "Attach well metadata to a results table from a plate map"
+    )
+
+    parser.add_argument(
+        "plate_regex",
+        help="A regular expression which matches plates in record names",
+    )
+
+    parser.add_argument(
+        "well_regex",
+        help="A regular expression which matches wells in record names",
+    )
+
+    parser.add_argument(
+        "result_file",
+        help="The spreadsheet to annotate with metadata"
+    )
+
+    parser.add_argument(
+        "metadata",
+        nargs="+",
+        help="The spreadsheets containing the metadata map of a plate",
+    )
+
+    parser.add_argument(
+        "-o",
+        default=None,
+        metavar="OUTPUT_FILE",
+        help="If given, output will be saved to OUTPUT_FILE, if not, RESULT_FILE will be overwritten",
+    )
+
+    return parser.parse_args()
+
+class Meta:
+    def __init__(self, path_or_filename, plate_regex, well_regex):
+        path = pathlib.Path(path_or_filename).resolve(strict=True)
+        path_regex = re.compile(r"^([A-Za-z\d]+)_([A-Za-z\d]+).*")
+        self.plate = re.match(path_regex, path.stem).group(1)
+        self.column_name = re.match(path_regex, path.stem).group(2)
+        self.plate_regex = re.compile(plate_regex.replace("PLATE", self.plate))
+        self.well_regex = re.compile(well_regex.replace("WELL", r"([A-Za-z]+\d+)"))
+
+        with open(path, "rb") as metadata:
+            self.data = pandas.read_excel(metadata, index_col=0)
+
+
+    def get_well_data(self, well):
+        wellletter = re.match(re.compile(r"([A-Za-z]+)\d+"), well).group(1)
+        wellnumber = re.match(re.compile(r"[A-Za-z]+(\d+)"), well).group(1)
+
+        try:
+            return self.data.loc[wellletter, wellnumber]
+        except KeyError:
+            return self.data.loc[wellletter, str(int(wellnumber))]
+
+    def add_to_row(self, series):
+        if re.match(self.plate_regex, series.name[1]) is not None:
+            well = re.match(self.well_regex, series.name[1]).group(1)
+            series[self.column_name] = self.get_well_data(well)
+        return series
+        
+    def add_as_column(self, result_table):
+        result_table.insert(len(result_table.columns), self.column_name, None, False)
+        return result_table.apply(lambda s: self.add_to_row(s), axis=1)
+    
+def main():
+    ARGS = get_args()
+    result_path = pathlib.Path(ARGS.result_file).resolve(strict=True)
+    with open(result_path, "rb") as results_in:
+        result_table = pandas.read_excel(
+            results_in,
+            index_col=[0, 1],
+            dtype={"multiple candidates": bool},
+        )
+
+    metadata_files = [pathlib.Path(m).resolve(strict=True) for m in ARGS.metadata]
+    metadata = [Meta(metadata_file, ARGS.plate_regex, ARGS.well_regex) for metadata_file in metadata_files]
+
+    for data in metadata:
+        result_table = data.add_as_column(result_table)
+
+
+    outpath = result_path
+    if ARGS.o is not None:
+        outpath = pathlib.Path(ARGS.o).resolve()
+
+    with open(outpath, "wb") as results_out:
+        result_table.to_excel(results_out)
+
+if __name__ == "__main__":
+    main()
+
+

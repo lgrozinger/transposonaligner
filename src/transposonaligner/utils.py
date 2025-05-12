@@ -19,7 +19,6 @@ def load_reads(config):
 
     reads = {record.id: Read(record) for record in records} 
     print(f"{len(reads)} read{'' if len(reads) < 2 else 's'} from {indir} loaded")
-    
     return reads
 
 def load_transposons(config):

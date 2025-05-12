@@ -135,7 +135,11 @@ class Read(SeqRecord):
     @property
     def dataframe(self):
         rows = []
-        common = {"name": self.id, "read length": len(self)}
+        common = {
+            "name": self.id,
+            "read length": len(self),
+            "multiple candidates": len(self.genome_features) > 1,
+        }
         if self.has_insertion:
             common["transposon"] = self.transposon.donor.name
             common["transposon evalue"] = self.transposon.evalue
@@ -145,7 +149,6 @@ class Read(SeqRecord):
             common["transposon start"] = int(self.transposon.location.start)
             common["transposon end"] = int(self.transposon.location.end)
             common["genome offset"] = self.genome_offset
-            common["multiple candidates"] = len(self.genome_features) > 1
             common["gap sequence"] = self.gap.seq if self.genome_offset is not None else None
             
         if self.has_genome:
