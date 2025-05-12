@@ -64,8 +64,8 @@ class Meta:
             return self.data.loc[wellletter, str(int(wellnumber))]
 
     def add_to_row(self, series):
-        if re.match(self.plate_regex, series.name[1]) is not None:
-            well = re.match(self.well_regex, series.name[1]).group(1)
+        if re.search(self.plate_regex, series.name[1]) is not None:
+            well = re.search(self.well_regex, series.name[1]).group(1)
             series[self.column_name] = self.get_well_data(well)
         return series
         
