@@ -40,4 +40,15 @@ Coming soon to PyPI...
 
 # Contributing
 
+Contributions of all kinds are welcomed, including:
+* Code for new features and bug fixes
+* Test code and examples
+* Bug reports and suggestions for new features (e.g. opening a github issue)
+
+If you plan to change the source code, please open an issue for discussing the proposed changes and fork the repository.
+
+# Citing
+
+If you use this work as part of a publication, please cite as: ___________________
+
 # Acknowledgements
