@@ -27,8 +27,8 @@ dependencies = [
 ]
 
 [project.scripts]
-xx = "transposonaligner.cli:main"
-meta = "transposonaligner.meta:main"
+tnfind = "transposonaligner.cli:main"
+tnmeta = "transposonaligner.meta:main"
 
 [tool.setuptools]
 include-package-data = true
