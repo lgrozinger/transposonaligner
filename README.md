@@ -1,6 +1,6 @@
 # Overview
 
-TnAtlas is a Python package written to identify and annotate transposon integration events into genomes.
+TnAtlas is a Python package for identifying and annotating transposon integration events into genomes.
 
 Given a set of sequencing reads, transposon sequences, and genomes, the TnAtlas package can:
 
