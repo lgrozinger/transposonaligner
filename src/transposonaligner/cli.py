@@ -17,6 +17,7 @@ def find_transposons(reads, config):
     insertion.insertion_search(
         reads.values(),
         transposons.values(),
+        command=config["blastn"],
         evalue=config["transposon_evalue"],
         word_size=config["transposon_word_size"],
     )
@@ -36,6 +37,7 @@ def find_genomes(reads, config):
         reads.values(),
         genomes.values(),
         config["genome_prefix"],
+        command=config["blastn"],
         evalue=config["genome_evalue"],
         word_size=config["genome_word_size"],
     )

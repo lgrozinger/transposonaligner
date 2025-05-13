@@ -8,10 +8,10 @@ verbosity = 0
 outfile = "transposonaligner_results.csv"
 
 [fastqc]
-# path = None
+# path = fastqc
 
 [sickle]
-# path = None
+# path = sickle
 quality = 20
 length = 20
 output = false

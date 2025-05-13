@@ -1,4 +1,5 @@
 import os
+import platform
 import argparse
 import tomllib
 from pathlib import Path
@@ -107,7 +108,7 @@ Likely integration events annotated and saved in genbank format. A summary table
     parser.add_argument(
         "-qc",
         nargs="?",
-        const="fastqc",
+        const="fastqc.exe" if platform.system() == "Windows" else "fastqc",
         default=None,
         metavar="PATH_TO_FASTQC",
         help="If present, fastqc analysis of read quality is performed",
@@ -116,7 +117,7 @@ Likely integration events annotated and saved in genbank format. A summary table
     parser.add_argument(
         "-trim",
         nargs="?",
-        const="sickle",
+        const="sickle.exe" if platform.system() == "Windows" else "sickle",
         default=None,
         metavar="PATH_TO_SICKLE",
         help="If present, sickle is used to trim the reads",
@@ -145,7 +146,7 @@ Likely integration events annotated and saved in genbank format. A summary table
     
     parser.add_argument(
         "-blastn",
-        default="blastn",
+        default="blastn.exe" if platform.system() == "Windows" else "blastn",
         metavar="PATH_TO_BLASTN",
         help="The blastn executable (default: blastn)",
     )
