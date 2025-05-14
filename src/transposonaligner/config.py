@@ -90,7 +90,7 @@ Likely integration events annotated and saved in genbank format. A summary table
     parser.add_argument(
         "--input-ext",
         default="ab1",
-        help="The file extension of the single end read files (default: ab1)",
+        help="The file extension of the single end read files (default: ab1 if INPUT_TYPE is fastq, fasta otherwise)",
     )
 
     parser.add_argument(
@@ -258,6 +258,9 @@ def make_paths_absolute(config):
     
 def get_configuration(parser):
     cliargs = vars(parser.parse_args())
+    if cliargs["input_type"] == "fasta":
+        cliargs["input_ext"] = "fasta"
+        
     configuration = {}
     
     if cliargs["config"] is not None:
