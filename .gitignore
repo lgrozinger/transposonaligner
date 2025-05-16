@@ -9,6 +9,7 @@ src/tnatlas/*
 !src/tnatlas/*.toml
 !data/
 data/*
+!data/*.ab1
 !data/transposons.gb
 !data/pputidakt2440.gb
 !pyproject.toml
