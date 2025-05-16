@@ -53,7 +53,7 @@ def config_to_dict(config):
 
 def get_parser():
     parser = argparse.ArgumentParser(
-        prog="XX",
+        prog="tnfind",
         description = """Use a set of sequencing reads to identify the positions of likely transposon integration events in genomes.
 
         

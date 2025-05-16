@@ -7,7 +7,7 @@ import pathlib
 
 def get_args():
     parser = argparse.ArgumentParser(
-        prog="meta",
+        prog="tnmeta",
         description = "Attach well metadata to a results table from a plate map"
     )
 
