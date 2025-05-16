@@ -1,13 +1,11 @@
-# Created by venv; see https://docs.python.org/3/library/venv.html
 *
 !.gitignore
-!macos_sickle.py
 !src/
 src/*
-!src/transposonaligner/
-src/transposonaligner/*
-!src/transposonaligner/*.py
-!src/transposonaligner/*.toml
+!src/tnatlas/
+src/tnatlas/*
+!src/tnatlas/*.py
+!src/tnatlas/*.toml
 !data/
 data/*
 !data/transposons.gb

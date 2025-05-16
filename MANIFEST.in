@@ -1,1 +1,1 @@
-include src/transposonaligner/default.toml
+include src/tnatlas/default.toml

@@ -5,11 +5,11 @@ from Bio import SeqIO
 
 import argparse
 import pandas
-from transposonaligner import utils
-from transposonaligner import blastn
-from transposonaligner import qc
-from transposonaligner import insertion
-from transposonaligner import config
+from tnatlas import utils
+from tnatlas import blastn
+from tnatlas import qc
+from tnatlas import insertion
+from tnatlas import config
 
 
 def find_transposons(reads, config):

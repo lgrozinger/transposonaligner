@@ -6,9 +6,9 @@ from Bio.Seq import Seq
 import copy
 import pandas
 
-from transposonaligner.blastn import blastn
-from transposonaligner.alignedfeature import InsertedFeature
-from transposonaligner.alignedfeature import GenomeFeature
+from tnatlas.blastn import blastn
+from tnatlas.alignedfeature import InsertedFeature
+from tnatlas.alignedfeature import GenomeFeature
 
 
 def insertion_search(reads, donors, **kwargs):

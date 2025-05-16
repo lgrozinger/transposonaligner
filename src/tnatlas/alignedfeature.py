@@ -1,7 +1,7 @@
 from Bio.SeqFeature import SeqFeature
 
-from transposonaligner.blastn import hsp_location
-from transposonaligner.annotate import translated_features_in
+from tnatlas.blastn import hsp_location
+from tnatlas.annotate import translated_features_in
 
 
 class AlignedFeature(SeqFeature):

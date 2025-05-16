@@ -1,10 +1,10 @@
 from pathlib import Path
 from Bio import SeqIO
 
-from transposonaligner.insertion import Read
-from transposonaligner.fastx import directory_to_fasta_records
-from transposonaligner.fastx import directory_to_fastq_records
-from transposonaligner.qc import trimming
+from tnatlas.insertion import Read
+from tnatlas.fastx import directory_to_fasta_records
+from tnatlas.fastx import directory_to_fastq_records
+from tnatlas.qc import trimming
 
 
 def load_reads(config):

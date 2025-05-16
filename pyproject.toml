@@ -3,12 +3,15 @@ requires = ["setuptools >= 77.0.3"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "transposonaligner"
+name = "tnatlas"
 description = "Find transposon integrations in reads and align them to genomes."
 readme = "README.md"
 keywords = ["bioinformatics", "alignment", "genetics", "transposon", "scientific"]
 authors = [
 	{name = "Lewis Grozinger", email = "lewis.grozinger@cnb.csic.es"},
+	{name = "Ana Mariya Anhel", email = "a.valdes@liverpool.ac.uk"},
+	{name = "Lorea Alejaldre", email = "lorea.alejaldre@cnb.csic.es"},
+	{name = "Angel Goni Moreno", email = "angel.goni@cnb.csic.es"},
 ]
 maintainers = [
     	{name = "Lewis Grozinger", email = "lewis.grozinger@cnb.csic.es"},
@@ -27,8 +30,8 @@ dependencies = [
 ]
 
 [project.scripts]
-tnfind = "transposonaligner.cli:main"
-tnmeta = "transposonaligner.meta:main"
+tnfind = "tnatlas.cli:main"
+tnmeta = "tnatlas.meta:main"
 
 [tool.setuptools]
 include-package-data = true
