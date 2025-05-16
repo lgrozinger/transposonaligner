@@ -1,5 +1,6 @@
 *
 !.gitignore
+!Dockerfile
 !src/
 src/*
 !src/tnatlas/
