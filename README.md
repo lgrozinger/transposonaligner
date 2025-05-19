@@ -45,6 +45,7 @@ Some parts of the pipeline also require
 ## tnfind
 
 `tnfind sequencing_data path_to_results_folder -transposon transposon_file.gb -genome genome_file.gb -trim -sam` 
+
 usage: tnfind [-h] [-v] [--sequencing-type {sanger,solexa,illumina}] [--input-type {fasta,fastq}] [--input-ext INPUT_EXT] [-o OUTPUT_FILE] [-qc [PATH_TO_FASTQC]] [-trim [PATH_TO_SICKLE]]
               [--trim-quality TRIM_QUALITY] [--trim-length TRIM_LENGTH] [--trim-save] [-blastn PATH_TO_BLASTN] [-sam] -transposon TRANSPOSON [TRANSPOSON ...] [--transposon-type TRANSPOSON_TYPE]
               [--transposon-save] [--transposon-word-size TRANSPOSON_WORD_SIZE] [--transposon-evalue TRANSPOSON_EVALUE] -genome GENOME [GENOME ...] [--genome-type GENOME_TYPE] [--genome-save]
@@ -57,50 +58,91 @@ table is also produced containing detail on each likely event.
 
 positional arguments:
   input_dir             The directory containing the reads to be processed
+  
   output_dir            The directory in which to save results
 
 options:
   -h, --help            show this help message and exit
+  
   -v
   --sequencing-type {sanger,solexa,illumina}
-                        The method from which the single end reads are obtained (default: sanger)
+  
+   The method from which the single end reads are obtained (default: sanger)
+   
   --input-type {fasta,fastq}
+  
                         The file format in which the single end reads are saved (default: fastq)
+                        
   --input-ext INPUT_EXT
+  
                         The file extension of the single end read files (default: ab1 if INPUT_TYPE is fastq, fasta otherwise)
+                        
   -o OUTPUT_FILE        A filename for the output summary table (default: results.xlsx)
+  
   -qc [PATH_TO_FASTQC]  If present, fastqc analysis of read quality is performed
+  
   -trim [PATH_TO_SICKLE]
+  
                         If present, sickle is used to trim the reads
+                        
   --trim-quality TRIM_QUALITY
+  
                         The quality threshold passed to sickle for trimming (default: 20)
+                        
   --trim-length TRIM_LENGTH
+  
                         The length threshold passed to sickle for trimming (default: 20)
+                        
   --trim-save           If present, the trimmed reads will be saved in OUTPUT_DIR
+  
   -blastn PATH_TO_BLASTN
+  
                         The blastn executable (default: blastn)
+                        
   -sam                  If present, save the blastn output in SAM format in OUTPUT_DIR
+  
   -transposon TRANSPOSON [TRANSPOSON ...]
+  
                         The file or files containing the sequences used to identify integrations
+                        
   --transposon-type TRANSPOSON_TYPE
+  
                         The file format of the file(s) given in TRANSPOSON (default: genbank)
+                        
   --transposon-save     If present, save reads annotated with transposon sequences in OUTPUT_DIR
+  
   --transposon-word-size TRANSPOSON_WORD_SIZE
+  
                         The word size passed to blastn for the transposon alignment (default: 10)
+                        
   --transposon-evalue TRANSPOSON_EVALUE
+  
                         The evalue passed to blastn for the transposon alignment (default: 0.01)
+                        
   -genome GENOME [GENOME ...]
+  
                         The file or files containing genomes for alignment
+                        
   --genome-type GENOME_TYPE
+  
                         The file format of the file(s) given in GENOME (default: genbank)
+                        
   --genome-save         If present, save reads annotated with all genome alignments in OUTPUT_DIR
+  
   --genome-word-size GENOME_WORD_SIZE
+  
                         The word size passed to blastn for the genome alignment (default: 10)
+                        
   --genome-evalue GENOME_EVALUE
+  
                         The evalue passed to blastn for the genome alignment (default: 0.01)
+                        
   --genome-prefix GENOME_PREFIX
+  
                         The number of base pairs, after the integration site, of genomic DNA to include in the output summary table
+                        
   -config CONFIG        A configuration file in TOML format. Command line arguments are overrided with value in the configuration file, if present
+  
 
 i.e (in data folder) `tnfind . ./results/results.xlsx -transposon transposons.gb -genome pputidakt2240.gb -trim -sam` 
 
