@@ -42,7 +42,8 @@ Some parts of the pipeline also require
 `docker pull biocomputationlab/tnatlas:latest`
 
 # Usage
-##tnfind
+## tnfind
+
 `tnfind sequencing_data path_to_results_folder -transposon transposon_file.gb -genome genome_file.gb -trim -sam` 
 usage: tnfind [-h] [-v] [--sequencing-type {sanger,solexa,illumina}] [--input-type {fasta,fastq}] [--input-ext INPUT_EXT] [-o OUTPUT_FILE] [-qc [PATH_TO_FASTQC]] [-trim [PATH_TO_SICKLE]]
               [--trim-quality TRIM_QUALITY] [--trim-length TRIM_LENGTH] [--trim-save] [-blastn PATH_TO_BLASTN] [-sam] -transposon TRANSPOSON [TRANSPOSON ...] [--transposon-type TRANSPOSON_TYPE]
@@ -103,7 +104,9 @@ options:
 
 i.e (in data folder) `tnfind . ./results/results.xlsx -transposon transposons.gb -genome pputidakt2240.gb -trim -sam` 
 
-##tnmeta
+## tnmeta
+
+
 `tnmeta -o path_to_results_folder/results.xlsx 'PLATE-' '-WELL-premix' output_file_name.xlsx`
 usage: tnmeta [-h] [-o OUTPUT_FILE] plate_regex well_regex result_file metadata [metadata ...]
 
