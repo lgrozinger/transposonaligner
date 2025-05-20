@@ -46,7 +46,9 @@ Some parts of the pipeline also require
 
 `tnfind sequencing_data path_to_results_folder -transposon transposon_file.gb -genome genome_file.gb -trim -sam` 
 
-usage: tnfind [-h] [-v] [--sequencing-type {sanger,solexa,illumina}] [--input-type {fasta,fastq}] [--input-ext INPUT_EXT] [-o OUTPUT_FILE] [-qc [PATH_TO_FASTQC]] [-trim [PATH_TO_SICKLE]]
+**usage**: 
+
+tnfind [-h] [-v] [--sequencing-type {sanger,solexa,illumina}] [--input-type {fasta,fastq}] [--input-ext INPUT_EXT] [-o OUTPUT_FILE] [-qc [PATH_TO_FASTQC]] [-trim [PATH_TO_SICKLE]]
               [--trim-quality TRIM_QUALITY] [--trim-length TRIM_LENGTH] [--trim-save] [-blastn PATH_TO_BLASTN] [-sam] -transposon TRANSPOSON [TRANSPOSON ...] [--transposon-type TRANSPOSON_TYPE]
               [--transposon-save] [--transposon-word-size TRANSPOSON_WORD_SIZE] [--transposon-evalue TRANSPOSON_EVALUE] -genome GENOME [GENOME ...] [--genome-type GENOME_TYPE] [--genome-save]
               [--genome-word-size GENOME_WORD_SIZE] [--genome-evalue GENOME_EVALUE] [--genome-prefix GENOME_PREFIX] [-config CONFIG]
@@ -56,12 +58,14 @@ Use a set of sequencing reads to identify the positions of likely transposon int
 `transposon` argument. Integration events are position in the genomes by alignment of the remainder of the sequencing read. Likely integration events annotated and saved in genbank format. A summary
 table is also produced containing detail on each likely event.
 
-positional arguments:
+**positional arguments**:
+
   input_dir             The directory containing the reads to be processed
   
   output_dir            The directory in which to save results
 
-options:
+**options**:
+
   -h, --help            show this help message and exit
   
   -v
@@ -119,11 +123,14 @@ i.e (in data folder) `tnfind . ./results/results.xlsx -transposon transposons.gb
 
 `tnmeta -o path_to_results_folder/results.xlsx 'PLATE-' '-WELL-premix' output_file_name.xlsx`
 
-usage: tnmeta [-h] [-o OUTPUT_FILE] plate_regex well_regex result_file metadata [metadata ...]
+**usage**: 
+
+tnmeta [-h] [-o OUTPUT_FILE] plate_regex well_regex result_file metadata [metadata ...]
 
 Attach well metadata to a results table from a plate map
 
-positional arguments:
+**positional arguments**:
+
   plate_regex     A regular expression which matches plates in record names
   
   well_regex      A regular expression which matches wells in record names
@@ -132,7 +139,8 @@ positional arguments:
   
   metadata        The spreadsheets containing the metadata map of a plate
 
-options:
+**options**:
+
   -h, --help      show this help message and exit
   
   -o OUTPUT_FILE  If given, output will be saved to OUTPUT_FILE, if not, RESULT_FILE will be overwritten
