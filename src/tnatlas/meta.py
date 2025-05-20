@@ -12,13 +12,8 @@ def get_args():
     )
 
     parser.add_argument(
-        "plate_regex",
-        help="A regular expression which matches plates in record names",
-    )
-
-    parser.add_argument(
-        "well_regex",
-        help="A regular expression which matches wells in record names",
+        "well_plate_regex",
+        help="A regular expression which matches the plates and wells in record names",
     )
 
     parser.add_argument(
@@ -42,17 +37,15 @@ def get_args():
     return parser.parse_args()
 
 class Meta:
-    def __init__(self, path_or_filename, plate_regex, well_regex):
+    def __init__(self, path_or_filename, regex):
         path = pathlib.Path(path_or_filename).resolve(strict=True)
         path_regex = re.compile(r"^([A-Za-z\d]+)_([A-Za-z\d]+).*")
         self.plate = re.match(path_regex, path.stem).group(1)
         self.column_name = re.match(path_regex, path.stem).group(2)
-        self.plate_regex = re.compile(plate_regex.replace("PLATE", self.plate))
-        self.well_regex = re.compile(well_regex.replace("WELL", r"([A-Za-z]+\d+)"))
+        self.regex = re.compile(regex.replace("PLATE", self.plate).replace("WELL", r"([A-Za-z]+\d+)"))
 
         with open(path, "rb") as metadata:
             self.data = pandas.read_excel(metadata, index_col=0)
-
 
     def get_well_data(self, well):
         wellletter = re.match(re.compile(r"([A-Za-z]+)\d+"), well).group(1)
@@ -64,8 +57,8 @@ class Meta:
             return self.data.loc[wellletter, str(int(wellnumber))]
 
     def add_to_row(self, series):
-        if re.search(self.plate_regex, series.name[1]) is not None:
-            well = re.search(self.well_regex, series.name[1]).group(1)
+        if re.search(self.regex, series.name[1]) is not None:
+            well = re.search(self.regex, series.name[1]).group(1)
             series[self.column_name] = self.get_well_data(well)
         return series
         
@@ -84,7 +77,7 @@ def main():
         )
 
     metadata_files = [pathlib.Path(m).resolve(strict=True) for m in ARGS.metadata]
-    metadata = [Meta(metadata_file, ARGS.plate_regex, ARGS.well_regex) for metadata_file in metadata_files]
+    metadata = [Meta(metadata_file, ARGS.well_plate_regex) for metadata_file in metadata_files]
 
     for data in metadata:
         result_table = data.add_as_column(result_table)
