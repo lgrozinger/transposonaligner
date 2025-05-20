@@ -47,14 +47,34 @@ class Meta:
         with open(path, "rb") as metadata:
             self.data = pandas.read_excel(metadata, index_col=0)
 
-    def get_well_data(self, well):
-        wellletter = re.match(re.compile(r"([A-Za-z]+)\d+"), well).group(1)
-        wellnumber = re.match(re.compile(r"[A-Za-z]+(\d+)"), well).group(1)
+    @property
+    def size(self):
+        return (len(self.data), len(self.data.columns))
 
-        try:
-            return self.data.loc[wellletter, wellnumber]
-        except KeyError:
-            return self.data.loc[wellletter, str(int(wellnumber))]
+    def to_alphanumeric(self, i):
+        number = (i - 1) // len(self.data)
+        letter = self.data.index[(i - 1) % len(self.data)]
+        return f"{letter}{number}"
+
+    def get_well_data(self, well):
+        alphanum = re.compile(r"([A-Za-z]+)(\d+)")
+        numeric = re.compile(r"(\d+)")
+
+        if re.match(alphanum, well) is not None:
+            m = re.match(alphanum, well)
+            wellletter = m.group(1)
+            wellnumber = m.group(2)
+
+            try:
+                return self.data.loc[wellletter, wellnumber]
+            except KeyError:
+                return self.data.loc[wellletter, str(int(wellnumber))]
+        elif re.match(numeric, well) is not None:
+            wellnumber = int(re.match(numeric, well).group(1))
+            return self.get_well_data(self.to_alphanumeric(wellnumber))
+        else:
+            print(f"The well '{well}' could not be found in the metadata map.")
+            return ""
 
     def add_to_row(self, series):
         if re.search(self.regex, series.name[1]) is not None:
