@@ -42,7 +42,7 @@ class Meta:
         path_regex = re.compile(r"^([A-Za-z\d]+)_([A-Za-z\d]+).*")
         self.plate = re.match(path_regex, path.stem).group(1)
         self.column_name = re.match(path_regex, path.stem).group(2)
-        self.regex = re.compile(regex.replace("PLATE", self.plate).replace("WELL", r"([A-Za-z]+\d+)"))
+        self.regex = re.compile(regex.replace("PLATE", self.plate).replace("WELL", r"([A-Za-z0-9]+)"))
 
         with open(path, "rb") as metadata:
             self.data = pandas.read_excel(metadata, index_col=0)
@@ -52,7 +52,7 @@ class Meta:
         return (len(self.data), len(self.data.columns))
 
     def to_alphanumeric(self, i):
-        number = (i - 1) // len(self.data)
+        number = (i - 1) // len(self.data) + 1
         letter = self.data.index[(i - 1) % len(self.data)]
         return f"{letter}{number}"
 
@@ -77,13 +77,24 @@ class Meta:
             return ""
 
     def add_to_row(self, series):
+        print(f"Looking at read {series.name[1]}")
         if re.search(self.regex, series.name[1]) is not None:
             well = re.search(self.regex, series.name[1]).group(1)
-            series[self.column_name] = self.get_well_data(well)
+            data = self.get_well_data(well)
+            print(f"On plate {self.plate} in well {well} adding metadata: {data}")
+            series[self.column_name] = data
+        else:
+            print(f"No metadata for read {series.name[1]}")
         return series
         
     def add_as_column(self, result_table):
-        result_table.insert(len(result_table.columns), self.column_name, None, False)
+        if self.column_name not in result_table:
+            result_table.insert(
+                len(result_table.columns),
+                self.column_name,
+                None,
+                False
+            )
         return result_table.apply(lambda s: self.add_to_row(s), axis=1)
     
 def main():
