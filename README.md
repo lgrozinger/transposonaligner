@@ -28,7 +28,7 @@ Some parts of the pipeline also require
 ## From source code
 
 1. Get the code:
-   `git clone https://github.com/biocomputationlab/transposonaligner`
+   `git clone https://github.com/BiocomputationLab/LAPrepository/tree/main/LAPuEntries/transposonaligner`
 3. Install using pip:
    
    `python3 -m pip install ./transposonaligner`
@@ -39,7 +39,7 @@ Some parts of the pipeline also require
 
 ## Using Docker (recommended for Windows users to use trimming function with sickle)
 
-`docker pull biocomputationlab/tnatlas:latest`
+`docker pull BiocomputationLab/tnatlas:latest`
 
 # Usage
 ## tnfind
